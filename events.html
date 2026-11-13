@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events | Power of God Zone</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { serif: ['"Cormorant Garamond"', 'serif'], sans: ['DM Sans', 'sans-serif'] },
+        colors: { navy: '#0b1438', mint: '#7ee0a0', forest: '#1f7a4a', cream: '#f7f4ec', card: '#fcfbf6', ember: '#c8553d' },
+        keyframes: { pulseDot: { '0%,100%': { opacity: 1 }, '50%': { opacity: .35 } } },
+        animation: { pulseDot: 'pulseDot 1.6s ease-in-out infinite' },
+      } },
+    };
+  </script>
+
+  <style>
+    /* Shared site-wide sizing and alignment */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-size: 15px; }
+    body { font-family: 'DM Sans', sans-serif; font-size: .96rem; line-height: 1.65; }
+    .site-container { width: 100%; max-width: 1600px; margin-inline: auto; padding-inline: 24px !important; }
+    @media (min-width: 1024px) { .site-container { padding-inline: 54px !important; } }
+    .site-header-inner { height: 68px; min-height: 68px; padding-block: 0 !important; }
+    .site-header-inner > a, .site-header-inner > nav, .site-header-inner > div { align-self: center; }
+    .site-header-inner > div > a { width: 99px; height: 38px; justify-content: center; padding: .4rem .8rem !important; font-size: .8rem !important; }
+    .bg-navy > .site-container { padding-block: .5rem !important; }
+    .site-nav { font-family: 'DM Sans', sans-serif; font-size: 14px !important; font-weight: 500; line-height: 1.4; gap: 1.5rem !important; }
+
+    /* Text wordmark with power-button O's */
+    .wordmark { font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:-.01em; line-height:1; white-space:nowrap; }
+    .wordmark svg { display:inline-block; height:.89em; width:.86em; vertical-align:-.04em; }
+    .outline-wm { font-family:'Montserrat',sans-serif; font-weight:800; font-size:clamp(2rem,8.4vw,9.5rem); line-height:1.1; letter-spacing:-.01em; white-space:nowrap; color:#fff; }
+    .outline-wm svg { display:inline-block; height:.89em; width:.86em; vertical-align:-.04em; }
+    .eyebrow { letter-spacing: .22em; text-transform: uppercase; font-size: .75rem; font-weight: 500; }
+    .soc { display:grid; place-items:center; width:2.4rem; height:2.4rem; border:1px solid rgba(255,255,255,.18); border-radius:9999px; color:#fff; transition:all .2s; }
+    .soc:hover { border-color:#7ee0a0; color:#7ee0a0; }
+    .soc-lg { width:3rem; height:3rem; background:rgba(255,255,255,.05); }
+    .outline-word { font-size: clamp(2.2rem, 8.6vw, 9.5rem); color: transparent; -webkit-text-stroke: 1px rgba(126,224,160,.4); letter-spacing: .01em; }
+
+    @media (max-width: 480px) { .wordmark { font-size:1.15rem !important; } }
+
+    /* Nav underline */
+    .nav-link { position: relative; font-weight: 500; }
+    .nav-link::after { content:''; position:absolute; left:0; right:0; bottom:-.5rem; height:2px; background:#7ee0a0; transform:scaleX(0); transition:transform .25s ease; }
+    .nav-link.active::after { transform:scaleX(1); }
+
+    /* =====================================================================
+       SHARED SECTION SPACING
+       Keep this block IDENTICAL in index.html and events.html so every
+       page has the same vertical rhythm. Change it here AND in the other file.
+         4rem  = normal content sections
+         6rem  = big "band" sections (dark / highlighted / form sections)
+       ===================================================================== */
+    #services, #ministries, #events, #gallery, #calendar, #programmes {
+      padding-top: 4rem !important;
+      padding-bottom: 4rem !important;
+    }
+    #prayer, #contact, #cta {
+      padding-top: 6rem !important;
+      padding-bottom: 6rem !important;
+    }
+    #sermons > div, #counselling > div, #weekly > div {
+      padding-top: 6rem !important;
+      padding-bottom: 6rem !important;
+    }
+
+    section[id] { scroll-margin-top: 5rem; }
+
+    /* Calendar */
+    .day { position:relative; display:flex; flex-direction:column; justify-content:space-between; height:5.5rem; border:1px solid transparent; border-radius:.9rem; padding:.55rem .75rem; text-align:left; transition:background .15s; }
+    .day:hover { background:#f0faf3; }
+    .day.sel { border-color:#7ee0a0; background:#f0faf3; }
+    .day.out { opacity:.4; }
+    .day .num { display:inline-flex; align-items:center; gap:.3rem; font-size:.95rem; font-weight:500; color:#0f172a; }
+    .day.today .num span { background:#0b1438; color:#fff; border-radius:9999px; min-width:1.7rem; height:1.7rem; display:inline-grid; place-items:center; }
+    .dot { display:inline-block; width:.5rem; height:.5rem; border-radius:9999px; margin-right:.25rem; }
+
+
+    /* Compact cards and forms; preserve the existing layouts and content */
+    article { padding: 1.25rem !important; }
+    form { padding: 1.35rem !important; gap: .85rem; }
+    form .fld, form input:not([type="checkbox"]):not([type="radio"]), form select, form textarea {
+      padding: .7rem .9rem !important; font-size: .9rem !important; min-height: 2.7rem;
+    }
+    form label { margin-top: .65rem; }
+    form button, form [type="submit"] { padding: .75rem 1.25rem !important; font-size: .9rem !important; }
+    article h3, article h4 { line-height: 1.25; }
+    article p { line-height: 1.5; }
+
+    /* Keep the hero within the visible viewport below the top announcement and header */
+    
+  body > section:first-of-type {
+      height: calc(100svh - 101px);
+      min-height: 0 !important;
+      overflow: hidden;
+    }
+    body > section:first-of-type > .site-container {
+      min-height: 0;
+      padding-top: 1.25rem !important;
+      padding-bottom: 1.25rem !important;
+    }
+    body > section:first-of-type h1 {
+  font-size: clamp(2.8rem, 10vh, 5.75rem) !important;
+  line-height: 1.02 !important;
+  margin-top: .65rem !important;
+}
+    body > section:first-of-type p:not(.eyebrow) {
+      font-size: clamp(.88rem, 1.8vh, 1rem) !important;
+      line-height: 1.5 !important;
+      margin-top: .85rem !important;
+    }
+    body > section:first-of-type .site-container > div.flex.flex-wrap {
+      margin-top: 1.1rem !important;
+      gap: .65rem !important;
+    }
+    body > section:first-of-type .site-container > div.flex.flex-wrap a {
+      padding: .75rem 1.15rem !important;
+      font-size: .88rem !important;
+    }
+    body > section:first-of-type .border-t > .site-container > div {
+      padding-top: .7rem !important;
+      padding-bottom: .7rem !important;
+    }
+    body > section:first-of-type .border-t > .site-container > div > span {
+      width: 2.35rem !important; height: 2.35rem !important;
+      flex: 0 0 2.35rem;
+    }
+    /* Final compact pass: cards, forms and hero viewport fit */
+    article { padding: 1rem !important; border-radius: 1.15rem !important; }
+    article h3, article h4 { margin-top: .85rem !important; }
+    article p { margin-top: .7rem !important; }
+    article .rounded-full { padding: .3rem .65rem !important; font-size: .82rem !important; }
+    form { padding: 1rem !important; gap: .65rem !important; }
+    form label { margin-top: .35rem !important; }
+    form input:not([type="checkbox"]):not([type="radio"]), form select, form textarea {
+      padding: .6rem .8rem !important; min-height: 2.45rem !important; font-size: .88rem !important;
+    }
+    form textarea { min-height: 6rem !important; }
+    form button, form [type="submit"] { padding: .65rem 1.1rem !important; }
+    body > section:first-of-type {
+      height: calc(100svh - 112px);
+      max-height: calc(100dvh - 112px);
+      min-height: 0 !important;
+      overflow: hidden;
+    }
+    body > section:first-of-type > .site-container { min-height: 0 !important; }
+
+    @media (max-width: 767px) {
+      body > section:first-of-type { height: calc(100svh - 101px); max-height: calc(100dvh - 101px); }
+      body > section:first-of-type > .site-container { padding-top: .8rem !important; padding-bottom: .8rem !important; }
+      body > section:first-of-type h1 { font-size: clamp(1.9rem, 5.5vh, 2.7rem) !important; }
+      body > section:first-of-type p:not(.eyebrow) { font-size: .76rem !important; }
+      body > section:first-of-type .border-t > .site-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: .35rem;
+      }
+      body > section:first-of-type .border-t > .site-container > div {
+        min-width: 0; gap: .4rem; padding: .45rem .15rem !important;
+      }
+      body > section:first-of-type .border-t > .site-container > div > span { display: none; }
+      body > section:first-of-type .border-t > .site-container p { font-size: .65rem !important; line-height: 1.3 !important; }
+      body > section:first-of-type .border-t > .site-container .eyebrow { font-size: .55rem !important; letter-spacing: .08em; }
+      article { padding: .85rem !important; }
+      form { padding: .85rem !important; gap: .55rem !important; }
+      body > section:first-of-type > .site-container { padding-top: .65rem !important; padding-bottom: .65rem !important; }
+    }
+
+    /* Shared compact typography and spacing */
+    body { font-size: .82rem; }
+    h2 { font-size: 2.35rem !important; }
+    .site-header-inner { height: 68px; min-height: 68px; }
+    .site-header-inner .wordmark { font-size: 1.3rem !important; }
+    .site-header-inner .leading-tight > p:last-child { font-size: .65rem !important; }
+    .site-nav { font-size: 12px !important; line-height: 1.35; gap: 1.25rem !important; }
+    #filters { max-width: 100%; flex-wrap: nowrap; gap: .2rem; overflow-x: auto; padding: .25rem; }
+    #filters button { flex: 0 0 auto; padding: .55rem .85rem !important; font-size: .8rem !important; white-space: nowrap; }
+    body > section:first-of-type h1 { font-size: 4rem !important; }
+    body > section:first-of-type h1 + p:not(.eyebrow) { font-size: .82rem !important; line-height: 1.45 !important; }
+    article { padding: 1rem !important; border-radius: 1.15rem !important; }
+    article h3, article h4 { font-size: 1.5rem !important; }
+    form { padding: .8rem !important; gap: .5rem !important; }
+    form label { margin-top: .25rem !important; }
+    form input:not([type="checkbox"]):not([type="radio"]), form select, form textarea {
+      padding: .5rem .7rem !important; min-height: 2.2rem !important; font-size: .8rem !important;
+    }
+    form textarea { min-height: 5rem !important; }
+    form button, form [type="submit"] { padding: .5rem .9rem !important; font-size: .8rem !important; }
+
+    @media (max-width: 767px) {
+      h2 { font-size: 1.85rem !important; }
+      .site-header-inner .wordmark { font-size: 1rem !important; }
+      body > section:first-of-type h1 { font-size: 2.15rem !important; }
+      body > section:first-of-type h1 + p:not(.eyebrow) { font-size: .74rem !important; }
+      #filters { display: grid; width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; }
+      #filters button { justify-content: center; padding-inline: .5rem !important; }
+      article { padding: .85rem !important; }
+      form { padding: .7rem !important; gap: .4rem !important; }
+    }
+
+    /* Compact card text while keeping image placeholders at their set dimensions */
+    article { padding: .75rem !important; }
+    article h3, article h4, .rounded-3xl h3, .rounded-3xl h4, .rounded-2xl h3, .rounded-2xl h4 {
+      font-size: 1rem !important; line-height: 1.2 !important;
+    }
+    article p, article li, .rounded-3xl p, .rounded-3xl li, .rounded-2xl p, .rounded-2xl li {
+      font-size: .74rem !important; line-height: 1.4 !important;
+    }
+    .rounded-3xl.p-8, .rounded-2xl.p-8 { padding: .8rem !important; }
+    article .rounded-full { padding: .22rem .5rem !important; font-size: .7rem !important; }
+    @media (max-width: 767px) {
+      #calendar > .mt-14.grid { grid-template-columns: minmax(0, 1fr) !important; }
+      #calendar > .mt-14.grid > * { min-width: 0; width: 100%; }
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-slate-800 antialiased">
+
+  <!-- ============ TOP BAR ============ -->
+  <div class="bg-navy text-white/90">
+    <div class="site-container mx-auto flex items-center justify-between py-3 text-[0.75rem] font-medium uppercase tracking-[.18em]">
+      <p class="flex items-center gap-2">
+        <svg class="h-4 w-4 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <span><span class="hidden sm:inline">Sunday Celebration · </span>8:00 AM</span>
+      </p>
+      <div class="hidden items-center gap-5 md:flex">
+        <a href="tel:+2348033792572" class="flex items-center gap-2 hover:text-mint">
+          <svg class="h-4 w-4 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+           +234 803 379 2572
+        </a>
+        <span class="h-4 w-px bg-white/25"></span>
+        <a href="https://www.youtube.com/@rccgpowerofgodparish4392/streams" class="flex items-center gap-2 hover:text-mint">
+          <span class="h-2 w-2 animate-pulseDot rounded-full bg-red-500"></span> Watch Live
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HEADER (identical to index.html) ============ -->
+  <header class="sticky top-0 z-50 border-b border-black/5 bg-cream/95 backdrop-blur">
+    <div class="site-container site-header-inner mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="logo.png" alt="Church logo" class="h-[3.25rem] w-[3.25rem] rounded-full border border-rose-200 bg-white object-contain p-0.5" onerror="this.style.visibility='hidden'" />
+        <div class="leading-tight">
+          <p class="wordmark text-[1.75rem] text-[#070e8c]" aria-label="Power of God"><span aria-hidden="true">P<svg viewBox="0 0 100 104" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" aria-hidden="true"><path d="M71.8 26.9A38 38 0 1 1 28.2 26.9"/><path d="M50 12V54" stroke="#f10b0b" stroke-width="15"/></svg>WER OF G<svg viewBox="0 0 100 104" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" aria-hidden="true"><path d="M71.8 26.9A38 38 0 1 1 28.2 26.9"/><path d="M50 12V54" stroke="#f10b0b" stroke-width="15"/></svg>D</span></p>
+          <p class="mt-1.5 text-[0.75rem] uppercase tracking-[.22em] text-forest">Where Champions Are Raised</p>
+        </div>
+      </a>
+
+      <nav class="hidden items-center gap-8 site-nav text-navy lg:flex" aria-label="Main">
+        <a href="index.html" class="nav-link hover:text-forest">Home</a>
+        <a href="index.html#services" class="nav-link hover:text-forest">Services</a>
+        <a href="events.html" class="nav-link active hover:text-forest">Events</a>
+        <a href="index.html#sermons" class="nav-link hover:text-forest">Sermons</a>
+        <a href="counselling.html" class="nav-link hover:text-forest">Counselling</a>
+        <a href="index.html#contact" class="nav-link hover:text-forest">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="welfare.html" class="hidden items-center gap-3 rounded-full bg-mint px-8 py-4 text-[1.0625rem] font-medium text-navy transition hover:brightness-95 sm:inline-flex">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 14h2a2 2 0 0 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"/><path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.8-2.8l-4.2 3.9"/><path d="m2 15 6 6"/><path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.7 2.7 0 0 0 16 4a2.7 2.7 0 0 0-5 1.8c0 1.1.8 2 1.5 2.7L16 12z"/></svg>
+          Give
+        </a>
+        <button id="menuBtn" class="rounded-lg p-2 text-navy lg:hidden" aria-label="Open menu" aria-expanded="false">
+          <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden border-t border-black/5 bg-cream lg:hidden">
+      <nav class="site-container mx-auto flex flex-col py-3 text-navy">
+        <a class="py-2.5" href="index.html">Home</a>
+        <a class="py-2.5" href="index.html#services">Services</a>
+        <a class="py-2.5" href="index.html#ministries">Ministries</a>
+        <a class="py-2.5 font-medium text-forest" href="events.html">Events</a>
+        <a class="py-2.5" href="index.html#gallery">Gallery</a>
+        <a class="py-2.5" href="index.html#sermons">Sermons</a>
+        <a class="py-2.5" href="index.html#prayer">Prayer</a>
+        <a class="py-2.5" href="counselling.html">Counselling</a>
+        <a class="py-2.5" href="index.html#contact">Contact</a>
+        <a href="welfare.html" class="mt-2 inline-flex items-center justify-center gap-3 rounded-full bg-mint px-6 py-3 text-center font-medium">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 14h2a2 2 0 0 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"/><path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.8-2.8l-4.2 3.9"/><path d="m2 15 6 6"/><path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.7 2.7 0 0 0 16 4a2.7 2.7 0 0 0-5 1.8c0 1.1.8 2 1.5 2.7L16 12z"/></svg>
+          Give
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO (same structure and spacing as index.html) ============ -->
+  <section class="relative isolate flex min-h-[calc(100svh-11rem)] flex-col overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=2000&q=80" alt="Church family fellowshipping" class="absolute inset-0 -z-20 h-full w-full object-cover object-right" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-[#1a120a]/95 via-[#1a120a]/70 to-[#1a120a]/10"></div>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+
+    <div class="site-container mx-auto flex w-full flex-1 flex-col justify-center py-12 lg:py-8">
+      <nav class="eyebrow flex items-center gap-3 text-white/80" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:text-mint">Home</a><span class="text-mint">›</span><span class="text-mint">Events</span>
+      </nav>
+      <p class="eyebrow mt-6 flex items-center gap-4 text-mint">
+        <span class="h-px w-14 bg-mint"></span> Power of God Zone · Calendar
+      </p>
+
+      <h1 class="mt-6 font-serif leading-[1.02] text-white">
+        Every gathering,
+        <span class="block italic text-mint">in one place.</span>
+      </h1>
+
+      <p class="mt-6 max-w-[38.75rem] text-[1.1875rem] leading-[1.75] text-white/90">
+        Sunday worship, midweek Bible study, Friday prayer, vigils, seminars and outreach — here is the full rhythm of the house. Pick a date, plan your week, and come expecting.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <a href="#calendar" class="inline-flex items-center gap-3 rounded-full bg-mint px-9 py-[1.125rem] font-medium text-navy transition hover:brightness-95">
+          Open the calendar
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+        </a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=13+Animashaun+Street+Alapere+Ketu+Lagos+Nigeria" target="_blank" rel="noopener" class="inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/10 px-9 py-[1.125rem] font-medium text-white backdrop-blur transition hover:bg-white/20">
+          <svg class="h-4 w-4 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8a3 3 0 0 0 0-6H8a3 3 0 0 1 0-6h8"/></svg>
+          Get directions
+        </a>
+      </div>
+    </div>
+
+    <!-- Info strip -->
+    <div class="border-t border-white/10 bg-black/60 backdrop-blur">
+      <div class="site-container mx-auto grid divide-y divide-white/10 md:grid-cols-3 md:divide-x md:divide-y-0">
+        <div class="flex items-center gap-4 py-6 md:pr-6">
+          <span class="grid h-12 w-12 place-items-center rounded-full border border-mint/40 text-mint"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></span>
+          <div><p class="eyebrow !text-[0.6875rem] text-white/60">Weekly rhythm</p><p class="font-medium text-white">5 gatherings every week</p></div>
+        </div>
+        <div class="flex items-center gap-4 py-6 md:px-8">
+          <span class="grid h-12 w-12 place-items-center rounded-full border border-mint/40 text-mint"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4m-8 8 2.5 2.5L16 12"/></svg></span>
+          <div><p class="eyebrow !text-[0.6875rem] text-white/60">This season</p><p class="font-medium text-white">10 special programmes</p></div>
+        </div>
+        <div class="flex items-center gap-4 py-6 md:pl-8">
+          <span class="grid h-12 w-12 place-items-center rounded-full border border-mint/40 text-mint"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2"/></svg></span>
+          <div><p class="eyebrow !text-[0.6875rem] text-white/60">Who it is for</p><p class="font-medium text-white">Everyone — come as you are</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CALENDAR ============ -->
+  <section id="calendar" class="site-container mx-auto py-16">
+    <p class="eyebrow flex items-center gap-4 text-navy"><span class="h-px w-12 bg-mint"></span> The church calendar</p>
+    <div class="mt-6 flex flex-col justify-between gap-8 md:flex-row md:items-end">
+      <div class="max-w-[48rem]">
+        <h2 class="font-serif text-[2.5rem] text-black sm:text-[3.5rem]">Our week, our month, our year</h2>
+        <p class="mt-6 text-[1.0625rem] leading-8 text-slate-600">Pick any day to see what is happening in the house. Our weekly rhythm repeats automatically — the red markers are special programmes.</p>
+      </div>
+      <button id="nextBtn" class="inline-flex w-fit items-center gap-3 rounded-full border border-navy px-7 py-3.5 font-medium text-navy transition hover:bg-navy hover:text-white">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4m-8 8 2.5 2.5L16 12"/></svg>
+        Next programme
+      </button>
+    </div>
+
+    <div class="mt-14 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+      <!-- Month grid -->
+      <div class="rounded-[2rem] border border-black/5 bg-card p-6 shadow-[0_20px_40px_-20px_rgba(11,20,56,.2)] sm:p-8">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <button id="prevM" aria-label="Previous month" class="grid h-12 w-12 place-items-center rounded-full border border-black/10 text-navy hover:bg-white">‹</button>
+            <button id="nextM" aria-label="Next month" class="grid h-12 w-12 place-items-center rounded-full border border-black/10 text-navy hover:bg-white">›</button>
+            <h3 id="monthLabel" class="ml-2 font-serif text-[2rem] text-black"></h3>
+          </div>
+          <button id="todayBtn" class="rounded-full bg-blue-50 px-5 py-2 text-xs font-medium uppercase tracking-[.18em] text-navy hover:bg-blue-100">Today</button>
+        </div>
+        <div class="mt-6 grid grid-cols-7 text-center text-[0.7rem] font-medium uppercase tracking-[.18em] text-slate-500">
+          <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+        </div>
+        <div id="calGrid" class="mt-3 grid grid-cols-7 gap-y-1"></div>
+        <div class="mt-6 flex flex-wrap items-center gap-x-8 gap-y-2 border-t border-black/10 pt-5 text-[0.7rem] uppercase tracking-[.16em] text-slate-600">
+          <span class="flex items-center gap-2"><span class="dot bg-blue-700"></span>Weekly gathering</span>
+          <span class="flex items-center gap-2"><span class="dot bg-red-600"></span>Special programme</span>
+          <span class="flex items-center gap-2"><span class="grid h-6 w-6 place-items-center rounded-full bg-navy text-[0.65rem] text-white" id="legendToday"></span>Today</span>
+        </div>
+      </div>
+
+      <!-- Day detail -->
+      <aside class="flex flex-col rounded-[2rem] border border-black/5 bg-card p-6 shadow-sm sm:p-8">
+        <p class="eyebrow !text-[0.7rem] text-forest">Happening that day</p>
+        <h3 id="dayLabel" class="mt-3 font-serif text-[1.75rem] text-black"></h3>
+        <ol id="dayList" class="mt-6 flex-1 space-y-6 border-l border-black/10 pl-6"></ol>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=13+Animashaun+Street+Alapere+Ketu+Lagos+Nigeria" target="_blank" rel="noopener" class="mt-8 flex items-center justify-between rounded-2xl bg-navy px-6 py-4 font-medium text-white transition hover:bg-navy/90">
+          <span class="flex items-center gap-3"><svg class="h-4 w-4 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8a3 3 0 0 0 0-6H8a3 3 0 0 1 0-6h8"/></svg>Directions to the church</span>
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ UPCOMING PROGRAMMES ============ -->
+  <section id="programmes" class="site-container mx-auto pb-16">
+    <p class="eyebrow flex items-center gap-4 text-navy"><span class="h-px w-12 bg-mint"></span> Save the date</p>
+    <div class="mt-6 flex flex-col justify-between gap-8 md:flex-row md:items-end">
+      <div class="max-w-[52rem]">
+        <h2 class="font-serif text-[2.5rem] text-black sm:text-[3.5rem]">Upcoming programmes</h2>
+        <p class="mt-6 text-[1.0625rem] leading-8 text-slate-600">Beyond the weekly rhythm we gather for thanksgiving, vigils, seminars and outreach. Every programme is free and open to friends and first-time visitors.</p>
+      </div>
+      <div id="filters" class="flex w-fit flex-wrap gap-1 rounded-full border border-black/5 bg-[#f4f1e8] p-1.5 text-[0.9375rem]"></div>
+    </div>
+    <div id="eventGrid" class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3"></div>
+    <p class="mt-10 flex items-center gap-3 text-[0.9375rem] text-slate-600">
+      <svg class="h-5 w-5 shrink-0 text-forest" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+      More programmes are announced in the weekly bulletin and at the welcome desk each Sunday.
+    </p>
+  </section>
+
+  <!-- ============ WEEKLY RHYTHM ============ -->
+  <section id="weekly" class="bg-[radial-gradient(40%_50%_at_100%_30%,rgba(126,224,160,.25),transparent)] bg-[#f4f1e8]">
+    <div class="site-container mx-auto py-20">
+      <p class="eyebrow flex items-center gap-4 text-navy"><span class="h-px w-12 bg-mint"></span> The weekly rhythm</p>
+      <div class="mt-6 flex flex-col justify-between gap-8 md:flex-row md:items-end">
+        <div class="max-w-[52rem]">
+          <h2 class="font-serif text-[2.5rem] text-black sm:text-[3.5rem]">Same week, every week</h2>
+          <p class="mt-6 text-[1.0625rem] leading-8 text-slate-600">These gatherings repeat every week and are already marked on the calendar above. Add them to your phone once and you will never miss a Wednesday again.</p>
+        </div>
+        <button id="icsBtn" class="inline-flex w-fit items-center gap-3 rounded-full bg-navy px-8 py-4 font-medium text-white transition hover:bg-navy/90">
+          <svg class="h-4 w-4 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4m-8 8 2.5 2.5L16 12"/></svg>
+          Add weekly services
+        </button>
+      </div>
+      <div id="weeklyGrid" class="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3"></div>
+    </div>
+  </section>
+
+  <!-- ============ FIRST TIME CTA ============ -->
+  <section id="cta" class="site-container mx-auto py-20">
+    <div class="relative overflow-hidden rounded-[2.2rem] bg-[#030a24] p-8 text-white sm:p-14">
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(40%_60%_at_100%_0%,rgba(16,120,80,.3),transparent)]"></div>
+      <div class="relative flex flex-col justify-between gap-10 lg:flex-row lg:items-center">
+        <div class="max-w-[48rem]">
+          <p class="eyebrow flex items-center gap-4 text-mint"><span class="h-px w-12 bg-mint"></span> First time?</p>
+          <h2 class="mt-6 font-serif text-[2.5rem] leading-[1.1] sm:text-[3.5rem]">No one should walk in alone. <span class="block italic text-mint">Tell us you are coming.</span></h2>
+          <p class="mt-7 max-w-[36rem] text-[1.0625rem] leading-8 text-white/70">Our welcome team will look out for you at the gate, help with parking and show you and your children where to sit. One message is all it takes.</p>
+          <ul class="mt-8 space-y-4 text-white/85">
+            <li class="flex items-center gap-3"><svg class="h-4 w-4 shrink-0 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>13 Animashaun Street, Off Church Street, Alapere, Ketu, Lagos, Nigeria</li>
+            <li class="flex items-center gap-3"><svg class="h-4 w-4 shrink-0 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> +234 803 379 2572</li>
+          </ul>
+        </div>
+        <div class="flex flex-col gap-4 sm:w-fit">
+          <a href="index.html#counselling" class="inline-flex items-center justify-center gap-3 rounded-full bg-mint px-8 py-4 font-medium text-navy transition hover:brightness-95">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg> Counselling &amp; care
+          </a>
+          <a href="tel:+2348033792572" class="inline-flex items-center justify-center gap-3 rounded-full border border-white/20 px-8 py-4 font-medium transition hover:bg-white/10">
+            <svg class="h-4 w-4 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Call the church office
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="relative overflow-hidden bg-[#030a24] text-white">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(45%_60%_at_100%_0%,rgba(16,120,80,.22),transparent)]"></div>
+    <div class="site-container relative mx-auto pt-20">
+      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_.8fr_.8fr_1.2fr]">
+        <div>
+          <a href="index.html" class="flex items-center gap-3">
+            <img src="logo.png" alt="Church logo" class="h-[3.25rem] w-[3.25rem] rounded-full border border-rose-200 bg-white object-contain p-0.5" onerror="this.style.visibility='hidden'" />
+            <div class="leading-tight">
+              <p class="wordmark text-[1.5rem] text-white" aria-label="Power of God"><span aria-hidden="true">P<svg viewBox="0 0 100 104" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" aria-hidden="true"><path d="M71.8 26.9A38 38 0 1 1 28.2 26.9"/><path d="M50 12V54" stroke="#f10b0b" stroke-width="15"/></svg>WER OF G<svg viewBox="0 0 100 104" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" aria-hidden="true"><path d="M71.8 26.9A38 38 0 1 1 28.2 26.9"/><path d="M50 12V54" stroke="#f10b0b" stroke-width="15"/></svg>D</span></p>
+              <p class="font-serif text-[1.05rem] italic text-mint">Where Champions Are Raised</p>
+            </div>
+          </a>
+          <p class="mt-6 max-w-[28rem] text-[1.0625rem] leading-8 text-white/75">A family of believers in Alapere, Ketu, Lagos, helping people encounter God, grow in faith and take their place as champions — one Sunday at a time.</p>
+          <div class="mt-7 flex items-center gap-3">
+            <a href="https://www.youtube.com/@rccgpowerofgodparish4392" aria-label="YouTube" class="soc soc-lg"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2C.5 9.1.5 12 .5 12s0 2.9.5 4.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.8.5-4.8s0-2.9-.5-4.8zM9.8 15.2V8.8l5.8 3.2z"/></svg></a>
+            <a href="https://web.facebook.com/rccgpowerofgod" aria-label="Facebook" class="soc soc-lg"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6.5c0-.7.3-1 1.1-1H17V2h-2.9C11 2 10 3.9 10 6.2V8H7.5v3.5H10V22h4V11.5h2.7L17.2 8z"/></svg></a>
+            <a href="https://www.instagram.com/rccg_powerofgod?mdxt=c2s3d2RoaHM2dDIy" aria-label="Instagram" class="soc soc-lg"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
+            <a href="https://wa.me/2348033792572" aria-label="WhatsApp" class="soc soc-lg"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a4 4 0 0 1-1.8-1.8l.8-1-1-2z"/></svg></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-[.22em] text-mint">Explore</h4>
+          <ul class="mt-6 space-y-[1.15rem] text-white/80">
+            <li><a href="index.html" class="hover:text-mint">Home</a></li>
+            <li><a href="index.html#services" class="hover:text-mint">Services</a></li>
+            <li><a href="index.html#ministries" class="hover:text-mint">Ministries</a></li>
+            <li><a href="events.html" class="hover:text-mint">Events</a></li>
+            <li><a href="index.html#gallery" class="hover:text-mint">Gallery</a></li>
+            <li><a href="index.html#sermons" class="hover:text-mint">Sermons</a></li>
+            <li><a href="index.html#prayer" class="hover:text-mint">Prayer</a></li>
+            <li><a href="counselling.html" class="hover:text-mint">Counselling</a></li>
+            <li><a href="index.html#contact" class="hover:text-mint">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-[.22em] text-mint">Quick links</h4>
+          <ul class="mt-6 space-y-[1.15rem] text-white/80">
+            <li><a href="index.html#prayer" class="hover:text-mint">Prayer request</a></li>
+            <li><a href="events.html#programmes" class="hover:text-mint">Upcoming events</a></li>
+            <li><a href="index.html#sermons" class="hover:text-mint">Watch sermons</a></li>
+            <li><a href="welfare.html" class="hover:text-mint">Give</a></li>
+            <li><a href="index.html#gallery" class="hover:text-mint">Photo gallery</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-[.22em] text-mint">Visit us</h4>
+          <ul class="mt-6 space-y-[1.05rem] text-white/80">
+            <li class="flex gap-3"><svg class="mt-1 h-4 w-4 shrink-0 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>13 Animashaun Street, Off Church Street, Alapere, Ketu, Lagos</li>
+            <li class="flex gap-3"><svg class="mt-1 h-4 w-4 shrink-0 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2"/></svg>RCCG Province 28 · Region 63</li>
+            <li class="flex gap-3"><svg class="mt-1 h-4 w-4 shrink-0 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Sundays · 8:00 AM</li>
+            <li class="flex gap-3"><svg class="mt-1 h-4 w-4 shrink-0 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+2348033792572" class="hover:text-mint"> +234 803 379 2572</a></li>
+            <li class="flex gap-3"><svg class="mt-1 h-4 w-4 shrink-0 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:Rccgpowerofgodparish@gmail.com" class="break-all hover:text-mint">Rccgpowerofgodparish@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="outline-wm mt-20 select-none text-center" aria-hidden="true">P<svg viewBox="0 0 100 104" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" aria-hidden="true"><path d="M71.8 26.9A38 38 0 1 1 28.2 26.9"/><path d="M50 12V54" stroke="#f10b0b" stroke-width="15"/></svg>WER OF G<svg viewBox="0 0 100 104" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" aria-hidden="true"><path d="M71.8 26.9A38 38 0 1 1 28.2 26.9"/><path d="M50 12V54" stroke="#f10b0b" stroke-width="15"/></svg>D</p>
+    </div>
+
+    <div class="relative mt-6 border-t border-white/10">
+      <div class="site-container mx-auto flex flex-col items-center justify-between gap-4 py-7 text-base text-white/60 sm:flex-row">
+        <p>© <span id="year"></span> RCCG Power of God Zone. All rights reserved.</p>
+        <div class="flex items-center gap-5">
+          <span class="text-[0.7rem] uppercase tracking-[.25em]">Where Champions Are Raised</span>
+          <a href="#" aria-label="Back to top" class="grid h-12 w-12 place-items-center rounded-full border border-white/15 text-white transition hover:border-mint hover:text-mint">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script>
+    // 1. Mobile menu
+    const menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('hidden') === false;
+      menuBtn.setAttribute('aria-expanded', open);
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 2. Helpers
+    const ic = (d, c = 'h-4 w-4 text-forest') => `<svg class="${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+    const PIN = '<path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>';
+    const CLK = '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>';
+    const CAL = '<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/>';
+    const HRT = '<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/>';
+    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const parse = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+    const key = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    const longDate = d => `${DAYS[d.getDay()]}, ${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+
+    // 3. Special programmes (edit this array — replace img with your own photos)
+    const events = [
+      { d: '2026-11-01', type: 'Special Service', tag: 'Thanksgiving', title: 'New Month Thanksgiving Service', time: '8:00 AM & 10:30 AM', place: 'Main Auditorium', img: 'https://picsum.photos/seed/pgz-e1/900/600', text: 'We open the new month with thanksgiving, a full testimony time and a short word of encouragement for the weeks ahead. Bring the family and a friend.' },
+      { d: '2026-11-06', type: 'Vigil', tag: 'Vigil', title: 'Night of Fire Prayer Vigil', time: '10:00 PM - 2:00 AM', place: 'Main Auditorium', img: 'https://picsum.photos/seed/pgz-e2/900/600', text: 'Our monthly all-night vigil of worship, intercession and prayer for the church, the city and the nation, right through to the early hours.' },
+      { d: '2026-11-16', type: 'Thanksgiving', tag: 'Thanksgiving', title: 'Harvest of Champions Thanksgiving', time: '8:00 AM & 10:30 AM', place: 'Main Auditorium', img: 'https://picsum.photos/seed/pgz-e3/900/600', text: 'Our annual thanksgiving celebration with a harvest choir, testimony time and a special message of gratitude for God’s faithfulness.' },
+      { d: '2026-11-21', type: 'Outreach', tag: 'Outreach', title: 'Free Medical & Community Outreach', time: '9:00 AM - 2:00 PM', place: 'Church Compound', img: 'https://picsum.photos/seed/pgz-e4/900/600', text: 'Free blood pressure and sugar checks, eye screening, medication reviews and counselling for our neighbours in Alapere and Ketu. Volunteer medics are welcome.' },
+      { d: '2026-11-28', type: 'Seminar', tag: 'Seminar', title: 'Marriage & Family Seminar', time: '10:00 AM', place: 'Fellowship Hall', img: 'https://picsum.photos/seed/pgz-e5/900/600', text: 'A practical, honest conversation on building a God-centred home, covering communication, finances and raising children in faith.' },
+      { d: '2026-12-06', type: 'Special Service', tag: 'Communion', title: 'Holy Communion & Child Dedication', time: '8:00 AM & 10:30 AM', place: 'Main Auditorium', img: 'https://picsum.photos/seed/pgz-e6/900/600', text: 'We come to the table together, and families present their little ones to the Lord in a short dedication service during both gatherings.' },
+      { d: '2026-12-20', type: 'Christmas', tag: 'Christmas', title: 'Carols & Candlelight Night', time: '6:00 PM', place: 'Church Courtyard', img: 'https://picsum.photos/seed/pgz-e7/900/600', text: 'An evening of carols, scripture readings and candlelight under the open sky. Bring a friend and a blanket — small chops served.' },
+      { d: '2026-12-24', type: 'Christmas', tag: 'Christmas', title: 'Christmas Eve Candlelight Service', time: '7:00 PM', place: 'Main Auditorium', img: 'https://picsum.photos/seed/pgz-e8/900/600', text: 'A quiet candlelit evening of carols, scripture readings and the Christmas story — the gentlest way to begin the celebration with your family.' },
+      { d: '2026-12-31', type: 'Vigil', tag: 'Vigil', title: 'Crossover Night of Praise', time: '9:00 PM - 12:30 AM', place: 'Church Courtyard', img: 'https://picsum.photos/seed/pgz-e9/900/600', text: 'We close the year in worship and prayer and step into the new one together — countdown, communion and a word of direction for the year ahead.' },
+      { d: '2027-01-11', type: 'Season', tag: 'Season', title: '21 Days of Fasting & Prayer', time: '5:30 AM daily', place: 'Main Auditorium & online', img: 'https://picsum.photos/seed/pgz-e10/900/600', text: 'Our annual 21 days of fasting and prayer begin, with daily 5:30 AM prayer meetings on site and streamed online.' },
+    ];
+
+    // 4. Weekly rhythm (dow: 0 = Sunday)
+    const weekly = [
+      { dow: 0, title: 'Champions Celebration Service', times: ['8:00 AM', '10:30 AM'], tag: 'Worship', place: 'Main Auditorium', text: 'Children’s church runs in parallel for ages 2 – 12.', icon: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>' },
+      { dow: 1, title: 'Morning Prayer Chain', times: ['5:30 AM'], tag: 'Prayer', place: 'Online & Upper Room', text: 'Start the week on your knees — 30 minutes of guided prayer, on site and on the phone line.', icon: '<path d="M12 3v3M5.6 7.6l2 2M3 14h3M18 14h3M16.4 9.6l2-2"/><path d="M7 18a5 5 0 0 1 10 0M3 21h18"/>' },
+      { dow: 3, title: 'Digging Deep & Bible Study', times: ['6:00 PM'], tag: 'Bible study', place: 'Main Auditorium', text: 'Verse by verse through scripture, with room for questions and application.', icon: '<path d="M2 4h7a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H2zM22 4h-7a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h8z"/>' },
+      { dow: 5, title: 'Prayer & Intercession', times: ['6:00 PM'], tag: 'Prayer', place: 'Main Auditorium', text: 'Corporate prayer for the house, the city and the nations, led by the prayer band.', icon: '<path d="M11 14h2a2 2 0 0 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"/><path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.8-2.8l-4.2 3.9"/><path d="m2 15 6 6"/>' },
+      { dow: 6, title: 'Youth & Teens Fellowship', times: ['4:00 PM'], tag: 'Youth', place: 'Fellowship Hall', text: 'Ages 13 – 30. Faith, friendship and purpose, every Saturday evening.', icon: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.5a3.5 3.5 0 0 1 0 7M18.5 14.5c2 .8 3.5 2.6 3.5 5.5"/>' },
+    ];
+    const weeklyFor = dow => weekly.find(w => w.dow === dow);
+
+    // 5. Calendar
+    const today = new Date(), todayKey = key(today);
+    let view = new Date(2026, 10, 1), selKey = '2026-11-01';
+    const calGrid = document.getElementById('calGrid');
+    document.getElementById('legendToday').textContent = today.getDate();
+
+    function renderDay() {
+      const d = parse(selKey), sp = events.filter(e => e.d === selKey), w = weeklyFor(d.getDay());
+      document.getElementById('dayLabel').textContent = longDate(d);
+      let html = sp.map(e => item('bg-red-600', e.time, e.tag, 'bg-red-100 text-red-700', e.title, e.place, e.text)).join('');
+      if (w) html += w.times.map(t => item('bg-blue-700', t, w.tag, 'bg-blue-50 text-navy', w.title, w.place, '')).join('');
+      document.getElementById('dayList').innerHTML = html || '<li class="text-slate-500">Nothing scheduled — a quiet day. Join us Sunday!</li>';
+    }
+    const item = (dot, time, tag, tagCls, title, place, text) => `
+      <li class="relative">
+        <span class="absolute -left-[1.95rem] top-1 h-3.5 w-3.5 rounded-full ${dot}"></span>
+        <p class="flex flex-wrap items-center gap-3 text-base tracking-[.1em] text-slate-600">${time}<span class="rounded-full px-3 py-0.5 text-[0.65rem] font-medium uppercase tracking-[.15em] ${tagCls}">${tag}</span></p>
+        <h4 class="mt-1 font-serif text-[1.45rem] leading-snug text-black">${title}</h4>
+        <p class="mt-1 flex items-center gap-2 text-base text-slate-600">${ic(PIN)}${place}</p>
+        ${text ? `<p class="mt-2 text-[0.95rem] leading-7 text-slate-600">${text}</p>` : ''}
+      </li>`;
+
+    function renderCal() {
+      document.getElementById('monthLabel').textContent = `${MONTHS[view.getMonth()]} ${view.getFullYear()}`;
+      const start = new Date(view.getFullYear(), view.getMonth(), 1); start.setDate(1 - start.getDay());
+      let html = '';
+      for (let i = 0; i < 42; i++) {
+        const d = new Date(start); d.setDate(start.getDate() + i);
+        const k = key(d), out = d.getMonth() !== view.getMonth();
+        const sp = events.filter(e => e.d === k), w = weeklyFor(d.getDay());
+        const dots = (w ? w.times.map(() => '<span class="dot bg-blue-700"></span>').join('') : '') + sp.map(() => '<span class="dot bg-red-600"></span>').join('');
+        const flag = sp.length ? '<svg class="h-3 w-3 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h12v20l-6-4-6 4z"/></svg>' : '';
+        html += `<button type="button" data-k="${k}" class="day ${out ? 'out' : ''} ${k === selKey ? 'sel' : ''} ${k === todayKey ? 'today' : ''}">
+          <span class="num"><span>${d.getDate()}</span>${flag}</span><span class="flex">${dots}</span></button>`;
+      }
+      calGrid.innerHTML = html;
+    }
+    const go = k => { selKey = k; const d = parse(k); view = new Date(d.getFullYear(), d.getMonth(), 1); renderCal(); renderDay(); };
+    calGrid.addEventListener('click', e => { const b = e.target.closest('[data-k]'); if (b) go(b.dataset.k); });
+    document.getElementById('prevM').onclick = () => { view = new Date(view.getFullYear(), view.getMonth() - 1, 1); renderCal(); };
+    document.getElementById('nextM').onclick = () => { view = new Date(view.getFullYear(), view.getMonth() + 1, 1); renderCal(); };
+    document.getElementById('todayBtn').onclick = () => go(todayKey);
+    document.getElementById('nextBtn').onclick = () => {
+      const nxt = events.find(e => e.d >= todayKey) || events[0];
+      go(nxt.d); document.getElementById('calendar').scrollIntoView({ behavior: 'smooth' });
+    };
+    renderCal(); renderDay();
+
+    // 6. Upcoming programmes + month filter
+    const filters = [['all', 'All programmes'], ['2026-11', 'November 2026'], ['2026-12', 'December 2026'], ['2027-01', 'January 2027']];
+    let active = 'all';
+    function renderEvents() {
+      document.getElementById('filters').innerHTML = filters.map(([k, l]) =>
+        `<button data-f="${k}" class="rounded-full px-5 py-2.5 font-medium transition ${k === active ? 'bg-navy text-white' : 'text-slate-600 hover:text-navy'}">${l}</button>`).join('');
+      document.getElementById('eventGrid').innerHTML = events.filter(e => active === 'all' || e.d.startsWith(active)).map(e => {
+        const d = parse(e.d);
+        return `<article class="flex flex-col overflow-hidden rounded-3xl border border-black/5 bg-card shadow-sm">
+          <div class="relative h-[17.25rem] overflow-hidden bg-emerald-950">
+            <img src="${e.img}" alt="${e.title}" loading="lazy" class="h-full w-full object-cover" />
+            <div class="absolute left-5 top-5 grid h-[4.6rem] w-[4.6rem] place-items-center rounded-2xl bg-white/95 text-center leading-none">
+              <div><p class="font-serif text-[1.6rem] text-navy">${String(d.getDate()).padStart(2, '0')}</p><p class="mt-1 text-[0.65rem] font-medium uppercase tracking-[.18em] text-slate-500">${MONTHS[d.getMonth()].slice(0, 3)}</p></div>
+            </div>
+            <span class="absolute right-5 top-5 rounded-full bg-navy/85 px-4 py-1.5 text-[0.7rem] font-medium uppercase tracking-[.18em] text-white">${e.type}</span>
+          </div>
+          <div class="flex flex-1 flex-col p-8">
+            <h3 class="font-serif text-[1.75rem] leading-snug text-black">${e.title}</h3>
+            <ul class="mt-4 space-y-2 text-[0.95rem] text-slate-600">
+              <li class="flex items-center gap-3">${ic(CAL)}${longDate(d)}</li>
+              <li class="flex items-center gap-3">${ic(CLK)}${e.time}</li>
+              <li class="flex items-center gap-3">${ic(PIN)}${e.place}</li>
+            </ul>
+            <p class="mt-5 flex-1 leading-7 text-slate-600">${e.text}</p>
+            <p class="mt-6 flex items-center gap-2 border-t border-black/10 pt-5 text-xs uppercase tracking-[.15em] text-slate-500">${ic(HRT, 'h-4 w-4 text-navy')} Everyone welcome · Free entry</p>
+          </div>
+        </article>`;
+      }).join('');
+    }
+    document.getElementById('filters').addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (b) { active = b.dataset.f; renderEvents(); } });
+    renderEvents();
+
+    // 7. Weekly cards
+    document.getElementById('weeklyGrid').innerHTML = weekly.map(w => `
+      <article class="flex flex-col rounded-3xl border border-black/5 bg-card p-8 shadow-sm">
+        <div class="flex items-start justify-between">
+          <div><p class="eyebrow !text-[0.7rem] text-forest">${DAYS[w.dow]}</p><p class="mt-2 text-[0.7rem] uppercase tracking-[.18em] text-slate-500">Weekly</p></div>
+          <span class="grid h-[3.25rem] w-[3.25rem] place-items-center rounded-full bg-blue-50 text-navy">${ic(w.icon, 'h-5 w-5')}</span>
+        </div>
+        <h3 class="mt-6 font-serif text-[1.75rem] leading-snug text-black">${w.title}</h3>
+        <div class="mt-4 flex gap-2">${w.times.map(t => `<span class="rounded-full bg-emerald-100 px-4 py-1.5 text-base font-medium text-forest">${t}</span>`).join('')}</div>
+        <p class="mt-5 flex-1 leading-7 text-slate-600">${w.text}</p>
+        <p class="mt-6 flex items-center gap-2 border-t border-dotted border-black/20 pt-5 text-xs uppercase tracking-[.15em] text-slate-500">${ic(PIN, 'h-4 w-4')}${w.place}</p>
+      </article>`).join('');
+
+    // 8. "Add weekly services" → downloads a calendar (.ics) file with weekly repeating events
+    document.getElementById('icsBtn').addEventListener('click', () => {
+      const hm = t => { const [h, m, ap] = t.match(/(\d+):(\d+) (AM|PM)/).slice(1); return String((+h % 12) + (ap === 'PM' ? 12 : 0)).padStart(2, '0') + m + '00'; };
+      const first = { 0: '20261101', 1: '20261102', 3: '20261104', 5: '20261106', 6: '20261107' };
+      const ev = weekly.flatMap(w => w.times.map(t => `BEGIN:VEVENT\nUID:${w.dow}-${hm(t)}@powerofgodzone\nDTSTAMP:20260101T000000Z\nDTSTART:${first[w.dow]}T${hm(t)}\nDURATION:PT2H\nRRULE:FREQ=WEEKLY\nSUMMARY:${w.title.replace('&', 'and')}\nLOCATION:${w.place.replace('&', 'and')}\\, Power of God Zone\\, Alapere\\, Ketu\nEND:VEVENT`));
+      const blob = new Blob([`BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Power of God Zone//EN\n${ev.join('\n')}\nEND:VCALENDAR`], { type: 'text/calendar' });
+      const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'power-of-god-zone-weekly.ics' });
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+  </script>
+</body>
+</html>

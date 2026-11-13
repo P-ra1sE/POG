@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welfare &amp; Giving | Power of God Zone</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { serif: ['"Cormorant Garamond"', 'serif'], sans: ['DM Sans', 'sans-serif'] },
+        colors: { navy: '#0b1438', mint: '#7ee0a0', forest: '#1f7a4a', cream: '#f7f4ec', card: '#fcfbf6', ember: '#c8553d' },
+        keyframes: { pulseDot: { '0%,100%': { opacity: 1 }, '50%': { opacity: .35 } } },
+        animation: { pulseDot: 'pulseDot 1.6s ease-in-out infinite' },
+      } },
+    };
+  </script>
+
+  <style>
+    html { font-size: 15px; }
+    body { font-family: 'DM Sans', sans-serif; font-size: .9rem; line-height: 1.65; }
+    /* Text wordmark with power-button O's */
+    .wordmark { font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:-.01em; line-height:1; white-space:nowrap; }
+    .wordmark svg { display:inline-block; height:.89em; width:.86em; vertical-align:-.04em; }
+    .outline-wm { font-family:'Montserrat',sans-serif; font-weight:800; font-size:clamp(2rem,8.4vw,9.5rem); line-height:1.1; letter-spacing:-.01em; white-space:nowrap; color:#fff; }
+    .outline-wm svg { display:inline-block; height:.89em; width:.86em; vertical-align:-.04em; }
+    .eyebrow { letter-spacing: .22em; text-transform: uppercase; font-size: .75rem; font-weight: 500; }
+    .soc { display:grid; place-items:center; width:2.4rem; height:2.4rem; border:1px solid rgba(255,255,255,.18); border-radius:9999px; color:#fff; transition:all .2s; }
+    .soc:hover { border-color:#7ee0a0; color:#7ee0a0; }
+    .soc-lg { width:3rem; height:3rem; background:rgba(255,255,255,.05); }
+    .outline-word { font-size: clamp(2.2rem, 8.6vw, 9.5rem); color: transparent; -webkit-text-stroke: 1px rgba(126,224,160,.4); letter-spacing: .01em; }
+
+    @media (max-width: 480px) { .wordmark { font-size:1.15rem !important; } }
+
+    /* Nav underline */
+    .nav-link { position: relative; }
+    .nav-link::after { content:''; position:absolute; left:0; right:0; bottom:-.5rem; height:2px; background:#7ee0a0; transform:scaleX(0); transition:transform .25s ease; }
+    .nav-link.active::after { transform:scaleX(1); }
+
+    section[id] { scroll-margin-top: 5rem; }
+
+    .lbl{display:block;margin-bottom:.6rem;font-size:.75rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#334155}
+    .fld{width:100%;border:1px solid rgba(0,0,0,.08);background:#fcfbf6;border-radius:.65rem;padding:.5rem .7rem;font-size:.8rem;color:#0f172a;outline:none;transition:border-color .2s,box-shadow .2s}
+    .fld::placeholder{color:#9ca3af}
+    .fld:focus{border-color:#7ee0a0;box-shadow:0 0 0 3px rgba(126,224,160,.25)}
+    .fund{display:flex;gap:.65rem;text-align:left;border:1px solid rgba(0,0,0,.08);background:#fcfbf6;border-radius:.75rem;padding:.65rem .75rem;transition:all .2s}
+    .fund:hover{border-color:rgba(11,20,56,.3)}
+    .fund.on{border-color:#3b4fa8;background:#f3f6ff;box-shadow:0 12px 24px -14px rgba(11,20,56,.4)}
+    .fund .ico{display:grid;place-items:center;flex-shrink:0;width:2.75rem;height:2.75rem;border-radius:9999px;background:#efeadb;color:#0b1438}
+    .fund.on .ico{background:#0b1438;color:#7ee0a0}
+    .amt{border:1px solid rgba(0,0,0,.1);background:#fcfbf6;border-radius:9999px;padding:.45rem .8rem;font-size:.78rem;font-weight:500;transition:all .2s}
+    .amt:hover{border-color:#7ee0a0}
+    .amt.on{background:#7ee0a0;border-color:#7ee0a0;color:#0b1438}
+    .pm{display:grid;place-items:center;flex-shrink:0;width:2.6rem;height:2.6rem;border-radius:9999px;border:1px solid rgba(0,0,0,.1);background:#fcfbf6;transition:all .2s}
+    .open .pm{background:#7ee0a0;border-color:#7ee0a0}
+    .site-container { width: 100%; max-width: 1600px; margin-inline: auto; padding-inline: 24px !important; }
+    @media (min-width: 1024px) { .site-container { padding-inline: 54px !important; } }
+    [class~="max-w-[100rem]"] { max-width: 1600px !important; padding-left: 24px !important; padding-right: 24px !important; }
+    @media (min-width: 1024px) { [class~="max-w-[100rem]"] { padding-left: 54px !important; padding-right: 54px !important; } }
+    .bg-navy > .site-container { padding-block: .5rem !important; }
+    .site-header-inner { height: 68px; min-height: 68px; padding-block: 0 !important; }
+    .site-header-inner > a, .site-header-inner > nav, .site-header-inner > div { align-self: center; }
+    .site-header-inner > div > a { width: 99px; height: 38px; justify-content: center; padding: .4rem .8rem !important; font-size: .8rem !important; }
+    .site-header-inner .wordmark { font-size: 1.3rem !important; }
+    .site-header-inner .leading-tight > p:last-child { font-size: .65rem !important; }
+    .site-nav { font-family: 'DM Sans', sans-serif; font-size: 12px !important; font-weight: 500; line-height: 1.35; gap: 1.25rem !important; }
+    h2 { font-size: 2.35rem !important; }
+    body > section:first-of-type { height: calc(100svh - 101px); max-height: calc(100dvh - 101px); min-height: 0 !important; display: flex; flex-direction: column; }
+    body > section:first-of-type .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-top: 1.25rem !important; padding-bottom: 1.25rem !important; }
+    body > section:first-of-type h1 { font-size: 4rem !important; }
+    body > section:first-of-type h1 + p { font-size: .82rem !important; line-height: 1.45 !important; }
+    article { padding: 1rem !important; border-radius: 1.15rem !important; }
+    article h3, article h4 { font-size: 1.5rem !important; }
+    form { padding: .8rem !important; gap: .5rem !important; }
+    form label { margin-top: .25rem !important; }
+    form input:not([type="checkbox"]):not([type="radio"]), form select, form textarea {
+      padding: .5rem .7rem !important; min-height: 2.2rem !important; font-size: .8rem !important;
+    }
+    #giveForm #amount { padding-left: 2.75rem !important; }
+    form textarea { min-height: 5rem !important; }
+    form button, form [type="submit"] { padding: .5rem .9rem !important; font-size: .8rem !important; }
+    @media (max-width: 767px) {
+      body > section:first-of-type { height: calc(100svh - 101px); max-height: calc(100dvh - 101px); }
+      body > section:first-of-type h1 { font-size: 2.15rem !important; }
+      body > section:first-of-type h1 + p { font-size: .74rem !important; }
+      body > section:first-of-type .border-t > [class~="max-w-[100rem]"] { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .35rem; }
+      body > section:first-of-type .border-t > [class~="max-w-[100rem]"] > * { min-width: 0; gap: .4rem; padding: .45rem .15rem !important; }
+      body > section:first-of-type .border-t > [class~="max-w-[100rem]"] > * > span { display: none; }
+      body > section:first-of-type .border-t > [class~="max-w-[100rem]"] p { font-size: .65rem !important; line-height: 1.3 !important; }
+      .site-header-inner .wordmark { font-size: 1rem !important; }
+      h2 { font-size: 1.85rem !important; }
+      article { padding: .85rem !important; }
+      form { padding: .7rem !important; gap: .4rem !important; }
+    }
+    article { padding: .75rem !important; }
+    article h3, article h4, .rounded-3xl h3, .rounded-3xl h4, .rounded-2xl h3, .rounded-2xl h4 {
+      font-size: 1rem !important; line-height: 1.2 !important;
+    }
+    article p, article li, .rounded-3xl p, .rounded-3xl li, .rounded-2xl p, .rounded-2xl li {
+      font-size: .74rem !important; line-height: 1.4 !important;
+    }
+    .rounded-3xl.p-8, .rounded-2xl.p-8 { padding: .8rem !important; }
+    article .rounded-full { padding: .22rem .5rem !important; font-size: .7rem !important; }
+    #funds .font-serif { font-size: .9rem !important; }
+    #funds button > span > span:last-child { font-size: .72rem !important; line-height: 1.3 !important; }
+    #stats > div { padding: .75rem !important; }
+    #stats > div p:first-child { font-size: 1.5rem !important; }
+    #stats > div p:last-child { font-size: .72rem !important; line-height: 1.35 !important; }
+    #faqList button { padding: .85rem 1rem !important; }
+    #faqList button .font-serif { font-size: .9rem !important; }
+    #faqList p { padding: 0 1rem .85rem !important; font-size: .74rem !important; line-height: 1.4 !important; }
+  </style>
+</head>
+
+<body class="bg-cream text-slate-800 antialiased">
+
+  <!-- ============ TOP BAR ============ -->
+  <div class="bg-navy text-white/90">
+    <div class="site-container mx-auto flex items-center justify-between py-3 text-[0.75rem] font-medium uppercase tracking-[.18em]">
+      <p class="flex items-center gap-2">
+        <svg class="h-4 w-4 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <span><span class="hidden sm:inline">Sunday Celebration · </span>8:00 AM</span>
+      </p>
+      <div class="hidden items-center gap-5 md:flex">
+        <a href="tel:+2348033792572" class="flex items-center gap-2 hover:text-mint">
+          <svg class="h-4 w-4 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+           +234 803 379 2572
+        </a>
+        <span class="h-4 w-px bg-white/25"></span>
+        <a href="https://www.youtube.com/@rccgpowerofgodparish4392/streams" class="flex items-center gap-2 hover:text-mint">
+          <span class="h-2 w-2 animate-pulseDot rounded-full bg-red-500"></span> Watch Live
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="sticky top-0 z-50 border-b border-black/5 bg-cream/95 backdrop-blur">
+    <div class="site-container site-header-inner mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="logo.png" alt="Church logo" class="h-[3.25rem] w-[3.25rem] rounded-full border border-rose-200 bg-white object-contain p-0.5" onerror="this.style.visibility='hidden'" />
+        <div class="leading-tight">
+          <p class="wordmark text-[1.45rem] text-[#070e8c]" aria-label="Power of God"><span aria-hidden="true">P<svg viewBox="0 0 100 104" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" aria-hidden="true"><path d="M71.8 26.9A38 38 0 1 1 28.2 26.9"/><path d="M50 12V54" stroke="#f10b0b" stroke-width="15"/></svg>WER OF G<svg viewBox="0 0 100 104" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" aria-hidden="true"><path d="M71.8 26.9A38 38 0 1 1 28.2 26.9"/><path d="M50 12V54" stroke="#f10b0b" stroke-width="15"/></svg>D</span></p>
+          <p class="mt-1.5 text-[0.6875rem] uppercase tracking-[.22em] text-forest">Where Champions Are Raised</p>
+        </div>
+      </a>
+
+      <nav class="hidden items-center site-nav text-navy lg:flex" aria-label="Main">
+        <a href="index.html" class="nav-link hover:text-forest">Home</a>
+        <a href="index.html#services" class="nav-link hover:text-forest">Services</a>
+        <a href="events.html" class="nav-link hover:text-forest">Events</a>
+        <a href="index.html#sermons" class="nav-link hover:text-forest">Sermons</a>
+        <a href="counselling.html" class="nav-link hover:text-forest">Counselling</a>
+        <a href="index.html#contact" class="nav-link hover:text-forest">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="welfare.html" class="hidden items-center gap-3 rounded-full bg-mint px-8 py-4 text-[1.0625rem] font-medium text-navy transition hover:brightness-95 sm:inline-flex">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 14h2a2 2 0 0 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"/><path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.8-2.8l-4.2 3.9"/><path d="m2 15 6 6"/><path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.7 2.7 0 0 0 16 4a2.7 2.7 0 0 0-5 1.8c0 1.1.8 2 1.5 2.7L16 12z"/></svg>
+          Give
+        </a>
+        <button id="menuBtn" class="rounded-lg p-2 text-navy lg:hidden" aria-label="Open menu" aria-expanded="false">
+          <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden border-t border-black/5 bg-cream lg:hidden">
+      <nav class="site-container mx-auto flex flex-col py-3 text-navy">
+        <a class="py-2.5" href="index.html">Home</a>
+        <a class="py-2.5" href="index.html#services">Services</a>
+        <a class="py-2.5" href="index.html#ministries">Ministries</a>
+        <a class="py-2.5" href="events.html">Events</a>
+        <a class="py-2.5" href="index.html#gallery">Gallery</a>
+        <a class="py-2.5" href="index.html#sermons">Sermons</a>
+        <a class="py-2.5" href="index.html#prayer">Prayer</a>
+        <a class="py-2.5" href="counselling.html">Counselling</a>
+        <a class="py-2.5" href="index.html#contact">Contact</a>
+        <a href="welfare.html" class="mt-2 rounded-full bg-mint px-6 py-3 text-center font-medium">Give
+
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="relative isolate flex flex-col overflow-hidden">
+    <!-- Replace with your own photo -->
+    <img src="https://picsum.photos/seed/pgz-welfare-hero/2000/1100" alt="Welfare team delivering a food parcel" class="absolute inset-0 -z-20 h-full w-full object-cover object-right" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-[#0e130c]/95 via-[#0e130c]/75 to-[#0e130c]/20"></div>
+    <div class="site-container hero-content mx-auto pb-8 pt-6 lg:pb-10 lg:pt-8">
+      <nav class="eyebrow flex items-center gap-3 text-white/80" aria-label="Breadcrumb"><a href="index.html" class="hover:text-mint">Home</a><span class="text-mint">›</span><span class="text-mint">Welfare &amp; Giving</span></nav>
+      <p class="eyebrow mt-5 flex items-center gap-4 text-mint"><span class="h-px w-14 bg-mint"></span> Welfare &amp; Giving</p>
+      <h1 class="mt-3 font-serif text-[2.25rem] leading-[1.05] text-white sm:text-[2.75rem] lg:text-[3.75rem]">One gift can change <span class="block italic text-mint">a family’s month.</span></h1>
+      <p class="mt-4 max-w-[46rem] text-[1.05rem] leading-[1.65] text-white/90">Give your tithe, an offering, or straight into the welfare fund that feeds, houses and stands with families across Alapere, Ketu, Lagos. Pay securely from your card, bank app or USSD in under a minute.</p>
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <a href="#give" class="inline-flex items-center gap-3 rounded-full bg-mint px-7 py-3 font-medium text-navy transition hover:brightness-95"><span id="heroHand"></span> Give now with Paystack</a>
+        <a href="#welfare" class="inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/10 px-7 py-3 font-medium text-white backdrop-blur transition hover:bg-white/20">See where it goes <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 bg-black/60 backdrop-blur">
+      <div class="mx-auto grid max-w-[100rem] gap-x-10 gap-y-2 px-5 py-3.5 text-sm text-white/85 sm:flex sm:flex-wrap lg:px-6">
+        <p class="flex items-center gap-2"><span class="text-mint" data-ic="shield"></span>Secured by Paystack</p>
+        <p class="flex items-center gap-2"><span class="text-mint" data-ic="card"></span>Card, transfer or USSD</p>
+        <p class="flex items-center gap-2"><span class="text-mint" data-ic="lock"></span>Details never stored here</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WELFARE ARM ============ -->
+  <section id="welfare" class="bg-[radial-gradient(30%_40%_at_100%_0%,rgba(126,224,160,.2),transparent)]">
+    <div class="mx-auto max-w-[100rem] px-5 lg:px-6 grid items-center gap-16 py-24 lg:grid-cols-[1.1fr_1fr]">
+      <div>
+        <p class="eyebrow flex items-center gap-4 text-navy"><span class="h-px w-12 bg-mint"></span> The welfare arm</p>
+        <h2 class="mt-6 font-serif text-[2.5rem] leading-[1.1] text-black sm:text-[3.5rem]">Nobody in this house should <em class="block text-navy">carry a burden alone.</em></h2>
+        <p class="mt-8 max-w-[44rem] text-[1.0625rem] leading-8 text-slate-600">The welfare arm of the house exists for one reason: to make sure no family in our church or on our street carries a burden alone. Every gift given here becomes a bag of rice, a hospital bill paid, a school fee covered, a widow visited.</p>
+        <div id="stats" class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4"></div>
+      </div>
+      <div class="relative mb-12 lg:mb-0">
+        <img src="https://picsum.photos/seed/pgz-welfare-bag/1000/800" alt="Food parcel being packed" class="aspect-[4/3] w-full rounded-3xl object-cover shadow-sm" />
+        <figure class="absolute -bottom-10 left-6 w-[78%] max-w-[22rem] rounded-2xl border border-black/5 bg-card p-6 shadow-[0_24px_40px_-20px_rgba(11,20,56,.35)] lg:-left-10">
+          <span class="font-serif text-4xl leading-none text-mint">“</span>
+          <blockquote class="font-serif text-[1.2rem] italic leading-8 text-slate-700">“They came with rice, they came with prayer, and they stayed.”</blockquote>
+          <figcaption class="mt-3 text-xs uppercase tracking-[.18em] text-slate-500">A widow in Alapere</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-[100rem] px-5 lg:px-6 pb-12"><div id="cards" class="grid gap-5 md:grid-cols-3"></div></div>
+
+    <div class="mx-auto max-w-[100rem] px-5 lg:px-6 pb-24">
+      <div class="grid items-center gap-8 rounded-3xl border border-mint/60 bg-emerald-50/70 p-8 lg:grid-cols-2 lg:p-10">
+        <div>
+          <h3 class="font-serif text-[1.9rem] leading-snug text-navy">Prefer to give food or your time instead of money?</h3>
+          <p class="mt-3 leading-8 text-slate-600">The welfare store is always short of a few things. Drop any of these at the church office during the week, or join the team on a Saturday delivery run.</p>
+        </div>
+        <ul id="needs" class="space-y-3 text-slate-700"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GIVE ONLINE ============ -->
+  <section id="give" class="bg-[#f6f3ea] bg-[radial-gradient(35%_40%_at_0%_100%,rgba(30,64,175,.07),transparent)]">
+    <div class="mx-auto max-w-[100rem] px-5 lg:px-6 py-24">
+      <p class="eyebrow flex items-center gap-4 text-navy"><span class="h-px w-12 bg-mint"></span> Give online</p>
+      <h2 class="mt-6 font-serif text-[2.5rem] leading-[1.1] text-black sm:text-[3.5rem]">Straight to the church account, <em class="block text-navy">in under a minute.</em></h2>
+      <p class="mt-6 max-w-[50rem] text-[1.0625rem] leading-8 text-slate-600">Choose where your gift should go, pick an amount, and pay securely with Paystack. Card, bank transfer and USSD are all supported — the money lands in the church account, not in anyone’s personal pocket.</p>
+
+      <div class="mt-14 grid items-start gap-8 lg:grid-cols-[1.3fr_1fr]">
+        <form id="giveForm" class="rounded-3xl border border-black/5 bg-card p-6 shadow-sm sm:p-10">
+          <p class="lbl">Where should this gift go?</p>
+          <div id="funds" class="grid gap-3 sm:grid-cols-2"></div>
+
+          <p class="lbl mt-8">Amount (Naira)</p>
+          <div id="amts" class="flex flex-wrap gap-3"></div>
+          <div class="relative mt-4">
+            <span class="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-slate-500">₦</span>
+            <input id="amount" type="number" min="100" step="100" value="10000" class="fld !pl-12" aria-label="Custom amount" />
+          </div>
+          <p class="mt-2 text-sm text-slate-500">Minimum ₦100 online · every amount, however small, is put to work.</p>
+
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            <label class="block"><span class="lbl">Your name <span class="normal-case tracking-normal text-slate-400">(optional)</span></span><input id="gName" class="fld" placeholder="e.g. Chidi Okafor" /></label>
+            <label class="block"><span class="lbl">Phone <span class="normal-case tracking-normal text-slate-400">(optional)</span></span><input id="gPhone" type="tel" class="fld" placeholder="+234 ..." /></label>
+          </div>
+          <label class="mt-4 block"><span class="lbl">Email for your receipt</span><input id="gEmail" type="email" required class="fld" placeholder="you@example.com" /></label>
+          <label class="mt-4 block"><span class="lbl">Anything you want us to know? <span class="normal-case tracking-normal text-slate-400">(optional)</span></span><textarea id="gNote" rows="4" class="fld resize-none" placeholder="e.g. A thanksgiving gift for my mother’s recovery..."></textarea></label>
+          <label class="mt-5 flex items-center gap-3 text-[0.95rem] text-slate-700"><input id="gAnon" type="checkbox" class="h-5 w-5 shrink-0 rounded accent-[#0b1438]" /> Please keep this gift anonymous in the church records.</label>
+
+          <div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-black/10 pt-6">
+            <p class="flex items-center gap-2 text-sm text-slate-500"><span class="text-forest" data-ic="shield"></span> Payment handled by Paystack</p>
+            <button id="giveBtn" class="inline-flex items-center gap-3 rounded-full bg-mint px-9 py-4 font-medium text-navy transition hover:brightness-95"><span id="giveLbl"></span> <span>→</span></button>
+          </div>
+        </form>
+
+        <div class="space-y-6">
+          <aside class="rounded-3xl bg-[#030a24] p-8 text-white shadow-[0_30px_60px_-30px_rgba(11,20,56,.6)]">
+            <p class="eyebrow !text-[0.7rem] text-mint">Your gift</p>
+            <p id="sumAmt" class="mt-6 font-serif text-[2.6rem] leading-none"></p>
+            <p class="mt-4 flex items-center gap-3 font-medium"><span class="text-mint" id="sumIco"></span><span id="sumFund"></span></p>
+            <ul class="mt-6 space-y-4 border-t border-white/10 pt-6 text-white/90">
+              <li class="flex items-center gap-3"><span class="text-mint" data-ic="bank"></span>Goes directly into the Power of God Zone account</li>
+              <li class="flex items-center gap-3"><span class="text-mint" data-ic="receipt"></span>Receipt emailed automatically by Paystack</li>
+              <li class="flex items-center gap-3"><span class="text-mint" data-ic="card"></span>Card, bank transfer or USSD</li>
+            </ul>
+            <blockquote class="mt-7 border-l-2 border-mint pl-5"><p class="font-serif text-[1.3rem] italic">“God loves a cheerful giver.”</p><p class="mt-2 text-xs uppercase tracking-[.2em] text-white/70">2 Corinthians 9:7</p></blockquote>
+          </aside>
+          <div class="rounded-3xl border border-black/5 bg-card p-8 shadow-sm">
+            <h3 class="font-serif text-[1.6rem] text-black">Other ways to give</h3>
+            <ul class="mt-6 space-y-5">
+              <li class="flex gap-4"><span class="mt-1 text-forest" data-ic="bank"></span><div><p class="font-semibold text-black">On Sunday</p><p class="text-slate-600">Offering envelopes are handed out at both services.</p></div></li>
+              <li class="flex gap-4"><span class="mt-1 text-forest" data-ic="phone"></span><div><p class="font-semibold text-black">Over the phone</p><p class="text-slate-600">Call the office on <a href="tel:+2348033792572" class="border-b border-mint font-medium text-navy"> +234 803 379 2572</a> and a steward will assist you.</p></div></li>
+              <li class="flex gap-4"><span class="mt-1 text-forest" data-ic="mail"></span><div><p class="font-semibold text-black">Pledges &amp; projects</p><p class="text-slate-600">Email <a href="mailto:Rccgpowerofgodparish@gmail.com" class="break-all border-b border-mint font-medium text-navy">Rccgpowerofgodparish@gmail.com</a> for building and mission pledges.</p></div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" class="mx-auto max-w-[100rem] px-5 lg:px-6 grid gap-12 py-24 lg:grid-cols-[1fr_1.6fr]">
+    <div>
+      <p class="eyebrow flex items-center gap-4 text-navy"><span class="h-px w-12 bg-mint"></span> Giving questions</p>
+      <h2 class="mt-6 font-serif text-[2.5rem] leading-[1.1] text-black sm:text-[3.25rem]">Honest answers before <em class="block text-navy">you press pay.</em></h2>
+      <p class="mt-6 max-w-[30rem] leading-8 text-slate-600">Still unsure about something? Call the office on <a href="tel:+2348033792572" class="border-b border-mint font-medium text-navy"> +234 803 379 2572</a> or email <a href="mailto:Rccgpowerofgodparish@gmail.com" class="break-all border-b border-mint font-medium text-navy">Rccgpowerofgodparish@gmail.com</a>.</p>
+    </div>
+    <div id="faqList" class="divide-y divide-black/5 overflow-hidden rounded-3xl border border-black/5 bg-[#f6f3ea]"></div>
+  </section>
+
+  <!-- ============ WELCOME CTA ============ -->
+  <section class="bg-gradient-to-br from-[#0a1440] via-[#040b2b] to-[#030a24] text-white">
+    <div class="mx-auto max-w-[100rem] px-5 lg:px-6 py-24">
+      <div class="grid items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
+        <div>
+          <p class="eyebrow flex items-center gap-4 text-mint"><span class="h-px w-12 bg-mint"></span> You are welcome here</p>
+          <h2 class="mt-6 font-serif text-[2.5rem] leading-[1.1] sm:text-[3.5rem]">Champions are raised <em class="block text-mint">in this house.</em></h2>
+          <p class="mt-6 max-w-[34rem] text-[1.0625rem] leading-8 text-white/70">Come as you are this Sunday. There is a seat, a warm welcome, and a word with your name on it waiting for you at RCCG Power of God Zone.</p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href="#give" class="inline-flex items-center gap-3 rounded-full bg-mint px-8 py-4 font-medium text-navy transition hover:brightness-95">Give online <span>→</span></a>
+            <a href="https://www.youtube.com/@rccgpowerofgodparish4392/streams" target="_blank" rel="noopener" class="inline-flex items-center gap-3 rounded-full border border-white/20 px-8 py-4 font-medium transition hover:bg-white/10"><span class="text-mint" data-ic="video"></span> Watch live</a>
+          </div>
+        </div>
+        <div class="rounded-3xl border border-white/20 bg-white/[.04] p-8">
+          <div class="flex items-center justify-between"><h3 class="font-serif text-2xl">This week</h3><span class="grid h-11 w-11 place-items-center rounded-full border border-white/15 text-mint" data-ic="cal"></span></div>
+          <ul class="mt-6 divide-y divide-white/10">
+            <li class="flex items-center justify-between gap-4 py-4"><div><p class="eyebrow !text-[0.7rem] text-mint">Sunday</p><p class="mt-1 font-medium">Celebration Service</p></div><span class="text-sm text-white/70">8:00 AM</span></li>
+            <li class="flex items-center justify-between gap-4 py-4"><div><p class="eyebrow !text-[0.7rem] text-mint">Wednesday</p><p class="mt-1 font-medium">Digging Deep</p></div><span class="text-sm text-white/70">6:00 PM</span></li>
+            <li class="flex items-center justify-between gap-4 py-4"><div><p class="eyebrow !text-[0.7rem] text-mint">Friday</p><p class="mt-1 font-medium">Prayer &amp; Intercession</p></div><span class="text-sm text-white/70">6:00 PM</span></li>
+          </ul>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=13+Animashaun+Street+Alapere+Ketu+Lagos+Nigeria" target="_blank" rel="noopener" class="mt-4 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[.18em] text-mint"><span data-ic="route"></span> Get directions</a>
+        </div>
+      </div>
+      <div class="mt-16 border-t border-white/10"></div>
+    </div>
+  </section>
+
+  <div id="toast" class="pointer-events-none fixed bottom-6 left-1/2 z-[110] max-w-[90vw] -translate-x-1/2 translate-y-4 rounded-full bg-navy px-6 py-3 text-center text-sm text-white opacity-0 shadow-lg transition"></div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="relative overflow-hidden bg-[#030a24] text-white">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(45%_60%_at_100%_0%,rgba(16,120,80,.22),transparent)]"></div>
+    <div class="relative mx-auto max-w-[100rem] px-5 pt-20 lg:px-6">
+      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_.8fr_.8fr_1.2fr]">
+        <div>
+          <a href="index.html" class="flex items-center gap-3">
+            <img src="logo.png" alt="Church logo" class="h-[3.25rem] w-[3.25rem] rounded-full border border-rose-200 bg-white object-contain p-0.5" onerror="this.style.visibility='hidden'" />
+            <div class="leading-tight">
+              <p class="wordmark text-[1.5rem] text-white" aria-label="Power of God"><span aria-hidden="true">P<svg viewBox="0 0 100 104" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" aria-hidden="true"><path d="M71.8 26.9A38 38 0 1 1 28.2 26.9"/><path d="M50 12V54" stroke="#f10b0b" stroke-width="15"/></svg>WER OF G<svg viewBox="0 0 100 104" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" aria-hidden="true"><path d="M71.8 26.9A38 38 0 1 1 28.2 26.9"/><path d="M50 12V54" stroke="#f10b0b" stroke-width="15"/></svg>D</span></p>
+              <p class="font-serif text-[1.05rem] italic text-mint">Where Champions Are Raised</p>
+            </div>
+          </a>
+          <p class="mt-6 max-w-[28rem] text-[1.0625rem] leading-8 text-white/75">A family of believers in Alapere, Ketu, Lagos, helping people encounter God, grow in faith and take their place as champions — one Sunday at a time.</p>
+          <div class="mt-7 flex items-center gap-3">
+            <a href="https://www.youtube.com/@rccgpowerofgodparish4392" aria-label="YouTube" class="soc soc-lg"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2C.5 9.1.5 12 .5 12s0 2.9.5 4.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.8.5-4.8s0-2.9-.5-4.8zM9.8 15.2V8.8l5.8 3.2z"/></svg></a>
+            <a href="https://web.facebook.com/rccgpowerofgod" aria-label="Facebook" class="soc soc-lg"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6.5c0-.7.3-1 1.1-1H17V2h-2.9C11 2 10 3.9 10 6.2V8H7.5v3.5H10V22h4V11.5h2.7L17.2 8z"/></svg></a>
+            <a href="https://www.instagram.com/rccg_powerofgod?mdxt=c2s3d2RoaHM2dDIy" aria-label="Instagram" class="soc soc-lg"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
+            <a href="https://wa.me/2348033792572" aria-label="WhatsApp" class="soc soc-lg"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a4 4 0 0 1-1.8-1.8l.8-1-1-2z"/></svg></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-[.22em] text-mint">Explore</h4>
+          <ul class="mt-6 space-y-[1.15rem] text-white/80">
+            <li><a href="index.html" class="hover:text-mint">Home</a></li>
+            <li><a href="index.html#services" class="hover:text-mint">Services</a></li>
+            <li><a href="index.html#ministries" class="hover:text-mint">Ministries</a></li>
+            <li><a href="events.html" class="hover:text-mint">Events</a></li>
+            <li><a href="index.html#gallery" class="hover:text-mint">Gallery</a></li>
+            <li><a href="index.html#sermons" class="hover:text-mint">Sermons</a></li>
+            <li><a href="index.html#prayer" class="hover:text-mint">Prayer</a></li>
+            <li><a href="counselling.html" class="hover:text-mint">Counselling</a></li>
+            <li><a href="index.html#contact" class="hover:text-mint">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-[.22em] text-mint">Quick links</h4>
+          <ul class="mt-6 space-y-[1.15rem] text-white/80">
+            <li><a href="index.html#prayer" class="hover:text-mint">Prayer request</a></li>
+            <li><a href="events.html#programmes" class="hover:text-mint">Upcoming events</a></li>
+            <li><a href="index.html#sermons" class="hover:text-mint">Watch sermons</a></li>
+            <li><a href="welfare.html" class="hover:text-mint">Give</a></li>
+            <li><a href="index.html#gallery" class="hover:text-mint">Photo gallery</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-[.22em] text-mint">Visit us</h4>
+          <ul class="mt-6 space-y-[1.05rem] text-white/80">
+            <li class="flex gap-3"><svg class="mt-1 h-4 w-4 shrink-0 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>13 Animashaun Street, Off Church Street, Alapere, Ketu, Lagos</li>
+            <li class="flex gap-3"><svg class="mt-1 h-4 w-4 shrink-0 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2"/></svg>RCCG Province 28 · Region 63</li>
+            <li class="flex gap-3"><svg class="mt-1 h-4 w-4 shrink-0 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Sundays · 8:00 AM</li>
+            <li class="flex gap-3"><svg class="mt-1 h-4 w-4 shrink-0 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+2348033792572" class="hover:text-mint"> +234 803 379 2572</a></li>
+            <li class="flex gap-3"><svg class="mt-1 h-4 w-4 shrink-0 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:Rccgpowerofgodparish@gmail.com" class="break-all hover:text-mint">Rccgpowerofgodparish@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="outline-wm mt-20 select-none text-center" aria-hidden="true">P<svg viewBox="0 0 100 104" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" aria-hidden="true"><path d="M71.8 26.9A38 38 0 1 1 28.2 26.9"/><path d="M50 12V54" stroke="#f10b0b" stroke-width="15"/></svg>WER OF G<svg viewBox="0 0 100 104" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" aria-hidden="true"><path d="M71.8 26.9A38 38 0 1 1 28.2 26.9"/><path d="M50 12V54" stroke="#f10b0b" stroke-width="15"/></svg>D</p>
+    </div>
+
+    <div class="relative mt-6 border-t border-white/10">
+      <div class="mx-auto flex max-w-[100rem] flex-col items-center justify-between gap-4 px-5 py-7 text-base text-white/60 sm:flex-row lg:px-6">
+        <p>© <span id="year"></span> RCCG Power of God Zone. All rights reserved.</p>
+        <div class="flex items-center gap-5">
+          <span class="text-[0.7rem] uppercase tracking-[.25em]">Where Champions Are Raised</span>
+          <a href="#" aria-label="Back to top" class="grid h-12 w-12 place-items-center rounded-full border border-white/15 text-white transition hover:border-mint hover:text-mint">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script>
+    // Mobile menu + year
+    const menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => { const o = mobileMenu.classList.toggle('hidden') === false; menuBtn.setAttribute('aria-expanded', o); });
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Icons
+    const P = {
+      hand: '<path d="M11 14h2a2 2 0 0 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"/><path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.8-2.8l-4.2 3.9"/><path d="m2 15 6 6"/>',
+      hosp: '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M12 8v6M9 11h6"/>',
+      bowl: '<path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/>',
+      cap: '<path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/>',
+      home: '<path d="M3 11 12 3l9 8v10H3z"/><path d="M12 17s-3-1.8-3-3.6a1.7 1.7 0 0 1 3-.8 1.7 1.7 0 0 1 3 .8c0 1.8-3 3.6-3 3.6z"/>',
+      pers: '<circle cx="10" cy="7" r="3.5"/><path d="M3 21c0-4 3-6 7-6M17 21s-3-1.8-3-3.6a1.7 1.7 0 0 1 3-.8 1.7 1.7 0 0 1 3 .8c0 1.8-3 3.6-3 3.6z"/>',
+      sprout: '<path d="M12 21v-9M12 12c0-4 3-6 7-6 0 4-3 6-7 6zM12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/>',
+      build: '<path d="M3 21h18M5 21V9l7-4 7 4v12M10 21v-6h4v6"/>',
+      globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',
+      gift: '<rect x="3" y="8" width="18" height="4"/><path d="M12 8v13M5 12v9h14v-9M12 8c-2-4-6-3-5 0 .6 1.5 5 0 5 0zM12 8c2-4 6-3 5 0-.6 1.5-5 0-5 0z"/>',
+      shield: '<path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/>',
+      card: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/>',
+      lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+      bank: '<path d="M3 10 12 4l9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/>',
+      receipt: '<path d="M6 2h9l4 4v16H6z"/><path d="M9 12h6M9 16h6M9 8h3"/>',
+      phone: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>',
+      mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+      video: '<rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3z"/>',
+      cal: '<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/>',
+      route: '<circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8a3 3 0 0 0 0-6H8a3 3 0 0 1 0-6h8"/>',
+    };
+    const ic = (k, c = 'h-5 w-5') => `<svg class="${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${P[k]}</svg>`;
+    document.querySelectorAll('[data-ic]').forEach(e => e.innerHTML = ic(e.dataset.ic, 'h-4 w-4'));
+    document.getElementById('heroHand').innerHTML = ic('hand', 'h-5 w-5');
+
+    // Welfare stats (edit these numbers)
+    document.getElementById('stats').innerHTML = [['124', 'Households supported in 2026'], ['38', 'Hospital visits this quarter'], ['17', 'School fees covered'], ['100%', 'Given straight to families']]
+      .map(([n, l]) => `<div class="rounded-2xl border border-black/5 bg-[#f6f3ea] p-5 text-center"><p class="font-serif text-[2rem] leading-none text-navy">${n}</p><p class="mt-2 text-sm leading-6 text-slate-600">${l}</p></div>`).join('');
+
+    // Welfare cards
+    document.getElementById('cards').innerHTML = [
+      ['Bereavement support', 'Funeral contributions, transport and practical help for families who have lost a loved one.', 'hand'],
+      ['Hospital &amp; home visits', 'A team that shows up with prayer, provisions and company during illness and recovery.', 'hosp'],
+      ['Food &amp; household relief', 'Monthly food parcels of rice, beans, oil and provisions for households going through a hard season.', 'bowl'],
+      ['School support', 'Help with school fees, uniforms and books so that no child in the house is sent home.', 'cap'],
+      ['Emergency relief', 'Fast, quiet assistance after a fire, flood, job loss or sudden medical emergency.', 'home'],
+      ['Widows &amp; single parents', 'Ongoing monthly support and a community that refuses to let anyone disappear into the shadows.', 'pers'],
+    ].map(([t, d, i]) => `<article class="rounded-3xl border border-black/5 bg-[#f6f3ea] p-8"><span class="grid h-16 w-16 place-items-center rounded-full bg-navy text-mint">${ic(i)}</span><h3 class="mt-6 font-serif text-[1.6rem] leading-snug text-black">${t}</h3><p class="mt-2 leading-7 text-slate-600">${d}</p></article>`).join('');
+
+    // Food / time needs
+    const tick = '<svg class="mt-0.5 h-5 w-5 shrink-0" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#3aa86a"/><path d="m7.5 12.5 3 3 6-6.5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    document.getElementById('needs').innerHTML = ['Non-perishable food items (rice, beans, garri, oil, tinned goods)', 'Toiletries, detergent and baby supplies', 'School books, uniforms and writing materials', 'Volunteers with medical, teaching or logistics skills']
+      .map(t => `<li class="flex gap-3">${tick}<span>${t}</span></li>`).join('');
+
+    // Giving form
+    const funds = [
+      { id: 'welfare', t: 'Welfare fund', d: 'Feeds, houses and supports families in need', i: 'hand' },
+      { id: 'tithe', t: 'Tithe', d: 'Your regular worship through giving', i: 'sprout' },
+      { id: 'offering', t: 'Offering', d: 'Sunday and special service offerings', i: 'hand' },
+      { id: 'building', t: 'Building project', d: 'Expanding the house for the next harvest', i: 'build' },
+      { id: 'missions', t: 'Missions &amp; outreach', d: 'Medical outreach, evangelism and church planting', i: 'globe' },
+      { id: 'thanks', t: 'Thanksgiving &amp; seed', d: 'A gift of gratitude for something God has done', i: 'gift' },
+    ];
+    const AMOUNTS = [2000, 5000, 10000, 25000, 50000];
+    let fund = 'thanks', amount = 10000;
+    const naira = n => '₦' + Number(n || 0).toLocaleString('en-NG');
+    const amtInput = document.getElementById('amount');
+
+    function paint() {
+      document.getElementById('funds').innerHTML = funds.map(f => `<button type="button" data-f="${f.id}" class="fund ${f.id === fund ? 'on' : ''}"><span class="ico">${ic(f.i, 'h-4 w-4')}</span><span><span class="block font-serif text-[1.25rem] leading-tight text-black">${f.t}</span><span class="mt-1 block text-sm leading-6 text-slate-600">${f.d}</span></span></button>`).join('');
+      document.getElementById('amts').innerHTML = AMOUNTS.map(a => `<button type="button" data-a="${a}" class="amt ${a === amount ? 'on' : ''}">${naira(a)}</button>`).join('');
+      const f = funds.find(x => x.id === fund);
+      document.getElementById('sumAmt').textContent = naira(amount);
+      document.getElementById('giveLbl').textContent = 'Give ' + naira(amount);
+      document.getElementById('sumFund').innerHTML = f.t;
+      document.getElementById('sumIco').innerHTML = ic(f.i, 'h-5 w-5');
+    }
+    document.getElementById('funds').addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (b) { fund = b.dataset.f; paint(); } });
+    document.getElementById('amts').addEventListener('click', e => { const b = e.target.closest('[data-a]'); if (b) { amount = +b.dataset.a; amtInput.value = amount; paint(); } });
+    amtInput.addEventListener('input', () => { amount = Math.max(0, parseInt(amtInput.value, 10) || 0); paint(); });
+    paint();
+
+    function toast(msg) {
+      const t = document.getElementById('toast'); t.textContent = msg;
+      t.classList.remove('opacity-0', 'translate-y-4'); clearTimeout(t._h);
+      t._h = setTimeout(() => t.classList.add('opacity-0', 'translate-y-4'), 4000);
+    }
+
+    // ▼▼ Paste your Paystack PUBLIC key here (starts with pk_live_ or pk_test_) ▼▼
+    const PAYSTACK_PUBLIC_KEY = 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxx';
+
+    document.getElementById('giveForm').addEventListener('submit', e => {
+      e.preventDefault();
+      if (amount < 100) { toast('The minimum online gift is ₦100.'); return; }
+      if (!window.PaystackPop || PAYSTACK_PUBLIC_KEY.includes('xxxx')) { toast('Add your Paystack public key in the script to go live.'); return; }
+      const f = funds.find(x => x.id === fund), v = id => document.getElementById(id).value.trim();
+      const cf = (n, k, val) => ({ display_name: n, variable_name: k, value: val });
+      PaystackPop.setup({
+        key: PAYSTACK_PUBLIC_KEY, email: v('gEmail'), amount: amount * 100, currency: 'NGN', ref: 'PGZ-' + Date.now(),
+        metadata: { custom_fields: [cf('Gift for', 'fund', f.t.replace('&amp;', '&')), cf('Name', 'name', v('gName')), cf('Phone', 'phone', v('gPhone')), cf('Note', 'note', v('gNote')), cf('Anonymous', 'anonymous', document.getElementById('gAnon').checked ? 'yes' : 'no')] },
+        callback: function () { toast('Thank you — your gift was received. A receipt is on its way.'); e.target.reset(); amount = 10000; amtInput.value = amount; paint(); },
+        onClose: function () { toast('Payment window closed. No money was taken.'); },
+      }).openIframe();
+    });
+
+    // FAQ accordion
+    const faqs = [
+      ['Is giving through Paystack safe?', 'Yes. Paystack is a licensed, PCI-DSS certified payment provider used by thousands of businesses across Africa. Your card or bank details go straight to Paystack — they never touch this website or the church office.'],
+      ['How quickly does the money reach the church account?', 'Paystack normally settles payments to the church account within one business day. Your receipt is emailed to you immediately.'],
+      ['Will I get a receipt?', 'Yes. Paystack emails a receipt to the address you enter on the form. If you need an official church receipt for your records, call or email the office.'],
+      ['Can I give anonymously?', 'Absolutely. Tick the anonymous box and your name will not appear on any record kept by the office. Only the Paystack receipt will carry your details.'],
+      ['Where does the welfare fund actually go?', 'Straight to families: food parcels, hospital bills, school fees, bereavement and emergency support. The welfare team works with the pastoral team so that help is quiet, fast and fair.'],
+      ['Can I give from outside Nigeria?', 'Yes. Most international Visa and Mastercard cards work. Payments are processed in naira, so your bank will convert the amount. For a direct transfer, contact the office.'],
+    ];
+    let openQ = 3;
+    function paintFaq() {
+      document.getElementById('faqList').innerHTML = faqs.map(([q, a], i) => `
+        <div class="${i === openQ ? 'open' : ''}">
+          <button type="button" data-q="${i}" class="flex w-full items-center justify-between gap-6 px-8 py-6 text-left" aria-expanded="${i === openQ}">
+            <span class="font-serif text-[1.3rem] text-black">${q}</span><span class="pm text-lg leading-none text-navy">${i === openQ ? '×' : '+'}</span>
+          </button>
+          ${i === openQ ? `<p class="px-8 pb-7 leading-8 text-slate-600">${a}</p>` : ''}
+        </div>`).join('');
+    }
+    document.getElementById('faqList').addEventListener('click', e => { const b = e.target.closest('[data-q]'); if (b) { openQ = openQ === +b.dataset.q ? -1 : +b.dataset.q; paintFaq(); } });
+    paintFaq();
+  </script>
+</body>
+</html>
