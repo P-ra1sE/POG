@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Welfare &amp; Giving | Power of God Zone</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,15 +47,15 @@
     section[id] { scroll-margin-top: 5rem; }
 
     .lbl{display:block;margin-bottom:.6rem;font-size:.75rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#334155}
-    .fld{width:100%;border:1px solid rgba(0,0,0,.08);background:#fcfbf6;border-radius:.65rem;padding:.5rem .7rem;font-size:.8rem;color:#0f172a;outline:none;transition:border-color .2s,box-shadow .2s}
+    .fld{width:100%;border:1px solid rgba(0,0,0,.08);background:#fcfbf6;border-radius:.65rem;padding:.65rem .85rem;font-size:.8rem;color:#0f172a;outline:none;transition:border-color .2s,box-shadow .2s}
     .fld::placeholder{color:#9ca3af}
     .fld:focus{border-color:#7ee0a0;box-shadow:0 0 0 3px rgba(126,224,160,.25)}
-    .fund{display:flex;gap:.65rem;text-align:left;border:1px solid rgba(0,0,0,.08);background:#fcfbf6;border-radius:.75rem;padding:.65rem .75rem;transition:all .2s}
+    .fund{display:flex;gap:.65rem;text-align:left;border:1px solid rgba(0,0,0,.08);background:#fcfbf6;border-radius:.75rem;padding:.75rem .85rem;transition:all .2s}
     .fund:hover{border-color:rgba(11,20,56,.3)}
     .fund.on{border-color:#3b4fa8;background:#f3f6ff;box-shadow:0 12px 24px -14px rgba(11,20,56,.4)}
     .fund .ico{display:grid;place-items:center;flex-shrink:0;width:2.75rem;height:2.75rem;border-radius:9999px;background:#efeadb;color:#0b1438}
     .fund.on .ico{background:#0b1438;color:#7ee0a0}
-    .amt{border:1px solid rgba(0,0,0,.1);background:#fcfbf6;border-radius:9999px;padding:.45rem .8rem;font-size:.78rem;font-weight:500;transition:all .2s}
+    .amt{border:1px solid rgba(0,0,0,.1);background:#fcfbf6;border-radius:9999px;padding:.5rem .9rem;font-size:.78rem;font-weight:500;transition:all .2s}
     .amt:hover{border-color:#7ee0a0}
     .amt.on{background:#7ee0a0;border-color:#7ee0a0;color:#0b1438}
     .pm{display:grid;place-items:center;flex-shrink:0;width:2.6rem;height:2.6rem;border-radius:9999px;border:1px solid rgba(0,0,0,.1);background:#fcfbf6;transition:all .2s}
@@ -76,13 +78,13 @@
     body > section:first-of-type h1 + p { font-size: .82rem !important; line-height: 1.45 !important; }
     article { padding: 1rem !important; border-radius: 1.15rem !important; }
     article h3, article h4 { font-size: 1.5rem !important; }
-    form { padding: .8rem !important; gap: .5rem !important; }
+    form { padding: .95rem !important; gap: .6rem !important; }
     form label { margin-top: .25rem !important; }
     form input:not([type="checkbox"]):not([type="radio"]), form select, form textarea {
-      padding: .5rem .7rem !important; min-height: 2.2rem !important; font-size: .8rem !important;
+      padding: .65rem .85rem !important; min-height: 2.4rem !important; font-size: .8rem !important;
     }
     #giveForm #amount { padding-left: 2.75rem !important; }
-    form textarea { min-height: 5rem !important; }
+    form textarea { min-height: 5.5rem !important; }
     form button, form [type="submit"] { padding: .5rem .9rem !important; font-size: .8rem !important; }
     @media (max-width: 767px) {
       body > section:first-of-type { height: calc(100svh - 101px); max-height: calc(100dvh - 101px); }
@@ -95,16 +97,26 @@
       .site-header-inner .wordmark { font-size: 1rem !important; }
       h2 { font-size: 1.85rem !important; }
       article { padding: .85rem !important; }
-      form { padding: .7rem !important; gap: .4rem !important; }
+      form { padding: .8rem !important; gap: .5rem !important; }
     }
-    article { padding: .75rem !important; }
+    article { padding: .95rem !important; }
+    article:has(> img), article:has(> div > img) { padding: 0 !important; }
+    #cards article { padding: .95rem !important; }
+    #giveForm { padding: 1rem !important; }
+    form .fld, form input:not([type="checkbox"]):not([type="radio"]), form select, form textarea {
+      padding: .65rem .85rem !important; min-height: 2.4rem !important; font-size: .8rem !important;
+    }
+    #giveForm #amount { padding-left: 2.75rem !important; }
+    form textarea { min-height: 5.5rem !important; }
+    form label:has(input[type="checkbox"]) { padding: .75rem .85rem !important; }
+    .rounded-3xl.border[class*="bg-"], .rounded-2xl.border[class*="bg-"] { padding: 1rem !important; }
     article h3, article h4, .rounded-3xl h3, .rounded-3xl h4, .rounded-2xl h3, .rounded-2xl h4 {
       font-size: 1rem !important; line-height: 1.2 !important;
     }
     article p, article li, .rounded-3xl p, .rounded-3xl li, .rounded-2xl p, .rounded-2xl li {
       font-size: .74rem !important; line-height: 1.4 !important;
     }
-    .rounded-3xl.p-8, .rounded-2xl.p-8 { padding: .8rem !important; }
+    .rounded-3xl.p-8, .rounded-2xl.p-8, .rounded-3xl.p-7, .rounded-2xl.p-7 { padding: 1rem !important; }
     article .rounded-full { padding: .22rem .5rem !important; font-size: .7rem !important; }
     #funds .font-serif { font-size: .9rem !important; }
     #funds button > span > span:last-child { font-size: .72rem !important; line-height: 1.3 !important; }

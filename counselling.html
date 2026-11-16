@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Counselling & Follow up | Power of God Zone</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -99,12 +101,12 @@
     body > section:first-of-type h1 + p { font-size: .82rem !important; line-height: 1.45 !important; }
     article { padding: 1rem !important; border-radius: 1.15rem !important; }
     article h3, article h4 { font-size: 1.5rem !important; }
-    form { padding: .8rem !important; gap: .5rem !important; }
+    form { padding: .95rem !important; gap: .6rem !important; }
     form label { margin-top: .25rem !important; }
     form input:not([type="checkbox"]):not([type="radio"]), form select, form textarea {
-      padding: .5rem .7rem !important; min-height: 2.2rem !important; font-size: .8rem !important;
+      padding: .65rem .85rem !important; min-height: 2.4rem !important; font-size: .8rem !important;
     }
-    form textarea { min-height: 5rem !important; }
+    form textarea { min-height: 5.5rem !important; }
     form button, form [type="submit"] { padding: .5rem .9rem !important; font-size: .8rem !important; }
     @media (max-width: 767px) {
       body > section:first-of-type { height: calc(100svh - 101px); max-height: calc(100dvh - 101px); }
@@ -118,16 +120,27 @@
       .site-header-inner .wordmark { font-size: 1rem !important; }
       h2 { font-size: 1.85rem !important; }
       article { padding: .85rem !important; }
-      form { padding: .7rem !important; gap: .4rem !important; }
+      form { padding: .8rem !important; gap: .5rem !important; }
     }
-    article { padding: .75rem !important; }
+    article { padding: .95rem !important; }
+    article:has(> img), article:has(> div > img) { padding: 0 !important; }
+    #teamGrid article > div:last-child { padding: .95rem !important; }
+    #counsellingForm { padding: 1rem !important; }
+    form .fld, form input:not([type="checkbox"]):not([type="radio"]), form select, form textarea {
+      padding: .65rem .85rem !important; min-height: 2.4rem !important; font-size: .8rem !important;
+    }
+    form textarea { min-height: 5.5rem !important; }
+    form .opt, form label:has(input[type="checkbox"]) { padding: .75rem .85rem !important; }
+    .rounded-3xl.border[class*="bg-"], .rounded-2xl.border[class*="bg-"] { padding: 1rem !important; }
+    #teamGrid article:has(> img) { padding: 0 !important; }
     article h3, article h4, .rounded-3xl h3, .rounded-3xl h4, .rounded-2xl h3, .rounded-2xl h4 {
       font-size: 1rem !important; line-height: 1.2 !important;
     }
     article p, article li, .rounded-3xl p, .rounded-3xl li, .rounded-2xl p, .rounded-2xl li {
       font-size: .74rem !important; line-height: 1.4 !important;
     }
-    .rounded-3xl.p-8, .rounded-2xl.p-8 { padding: .8rem !important; }
+    .rounded-3xl.p-8, .rounded-2xl.p-8, .rounded-3xl.p-7, .rounded-2xl.p-7 { padding: 1rem !important; }
+    #teamGrid article > div:last-child { padding: .95rem !important; }
     article .rounded-full { padding: .22rem .5rem !important; font-size: .7rem !important; }
     #teamGrid article > img { display: block; width: 100%; aspect-ratio: 10 / 9; height: auto; object-fit: cover; }
     #teamGrid article > div { padding: .8rem !important; }

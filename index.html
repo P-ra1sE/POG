@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Power of God Zone | Where Champions Are Raised</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
 
   <!-- Fonts (same as events.html) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -176,12 +178,12 @@
     body > section:first-of-type h1 + p { font-size: .82rem !important; line-height: 1.45 !important; }
     article { padding: 1rem !important; border-radius: 1.15rem !important; }
     article h3, article h4 { font-size: 1.5rem !important; }
-    form { padding: .8rem !important; gap: .5rem !important; }
+    form { padding: .95rem !important; gap: .6rem !important; }
     form label { margin-top: .25rem !important; }
     form input:not([type="checkbox"]):not([type="radio"]), form select, form textarea {
-      padding: .5rem .7rem !important; min-height: 2.2rem !important; font-size: .8rem !important;
+      padding: .65rem .85rem !important; min-height: 2.4rem !important; font-size: .8rem !important;
     }
-    form textarea { min-height: 5rem !important; }
+    form textarea { min-height: 5.5rem !important; }
     form button, form [type="submit"] { padding: .5rem .9rem !important; font-size: .8rem !important; }
 
     @media (max-width: 767px) {
@@ -192,18 +194,34 @@
       body > section:first-of-type { max-height: calc(100dvh - 101px); }
       body > section:first-of-type > .site-container { padding-top: .65rem !important; padding-bottom: .65rem !important; }
       article { padding: .85rem !important; }
-      form { padding: .7rem !important; gap: .4rem !important; }
+      form { padding: .8rem !important; gap: .5rem !important; }
     }
 
     /* Compact card text while keeping image placeholders at their set dimensions */
-    article { padding: .75rem !important; }
+    article { padding: .95rem !important; }
+    article:has(> img), article:has(> div > img) { padding: 0 !important; }
+    #ministryGrid article > div:last-child, #eventList > a { padding: .95rem !important; }
+    #weeklyServiceCards article { padding: 1rem !important; }
+    #prayerForm, #testimonyForm, #stepForm { padding: 1rem !important; }
+    form .fld, form input:not([type="checkbox"]):not([type="radio"]), form select, form textarea {
+      padding: .65rem .85rem !important; min-height: 2.4rem !important; font-size: .8rem !important;
+    }
+    form textarea { min-height: 5.5rem !important; }
+    form .opt, form label:has(input[type="checkbox"]) { padding: .75rem .85rem !important; }
+    .rounded-3xl.border[class*="bg-"], .rounded-2xl.border[class*="bg-"] { padding: 1rem !important; }
+    #ministryGrid article:has(> div > img), #eventList > a { padding: 0 !important; }
     article h3, article h4, .rounded-3xl h3, .rounded-3xl h4, .rounded-2xl h3, .rounded-2xl h4 {
       font-size: 1rem !important; line-height: 1.2 !important;
     }
     article p, article li, .rounded-3xl p, .rounded-3xl li, .rounded-2xl p, .rounded-2xl li {
       font-size: .74rem !important; line-height: 1.4 !important;
     }
-    .rounded-3xl.p-8, .rounded-2xl.p-8 { padding: .8rem !important; }
+    #weeklyServiceCards article { padding: 1rem !important; }
+    #weeklyServiceCards article > div:first-child { align-items: center; }
+    #weeklyServiceCards article > div:first-child > span { width: 2.5rem !important; height: 2.5rem !important; }
+    #weeklyServiceCards article h3 { margin-top: .5rem !important; }
+    .rounded-3xl.p-8, .rounded-2xl.p-8, .rounded-3xl.p-7, .rounded-2xl.p-7 { padding: 1rem !important; }
+    #ministryGrid article > div:last-child, #eventList > a { padding: .95rem !important; }
     article .rounded-full { padding: .22rem .5rem !important; font-size: .7rem !important; }
     #recentList .font-serif { font-size: 1rem !important; }
     #recentList img { max-height: none; }
@@ -373,72 +391,72 @@
       </a>
     </div>
 
-    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <div id="weeklyServiceCards" class="mt-14 grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-4">
       <!-- Sunday -->
-      <article class="flex flex-col rounded-3xl border border-black/5 bg-card p-8 shadow-sm">
-        <div class="flex items-start justify-between">
+      <article class="flex flex-col rounded-2xl border border-black/5 bg-card p-4 shadow-sm">
+        <div class="flex items-center justify-between">
           <p class="eyebrow text-navy">Sunday</p>
-          <span class="grid h-[3.25rem] w-[3.25rem] place-items-center rounded-full bg-mint/40 text-forest">
+          <span class="grid h-11 w-11 place-items-center rounded-full bg-mint/40 text-forest">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
           </span>
         </div>
-        <h3 class="mt-6 font-serif text-[1.625rem] leading-snug text-black">Champions Celebration Service</h3>
-        <div class="mt-4 flex gap-2">
+        <h3 class="mt-3 font-serif text-[1.35rem] leading-snug text-black">Champions Celebration Service</h3>
+        <div class="mt-3 flex gap-2">
           <span class="rounded-full bg-blue-50 px-3.5 py-1.5 text-sm font-medium text-navy">8:00 AM</span>
         </div>
-        <p class="mt-5 flex-1 leading-7 text-slate-600">A joyful gathering of worship, the Word and communion. Children church runs in parallel for every service.</p>
-        <p class="mt-6 flex items-center gap-2 border-t border-dotted border-black/20 pt-5 text-xs uppercase tracking-[.15em] text-slate-500">
+        <p class="mt-3 leading-6 text-slate-600">A joyful gathering of worship, the Word and communion. Children church runs in parallel for every service.</p>
+        <p class="mt-4 flex items-center gap-2 border-t border-dotted border-black/20 pt-3 text-xs uppercase tracking-[.15em] text-slate-500">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01" stroke-linecap="round"/></svg>
           Two identical services
         </p>
       </article>
 
-      <!-- Wednesday -->
-      <article class="flex flex-col rounded-3xl border border-black/5 bg-card p-8 shadow-sm">
-        <div class="flex items-start justify-between">
-          <p class="eyebrow text-navy">Wednesday</p>
-          <span class="grid h-[3.25rem] w-[3.25rem] place-items-center rounded-full bg-mint/40 text-forest">
+      <!-- Tuesday -->
+      <article class="flex flex-col rounded-2xl border border-black/5 bg-card p-4 shadow-sm">
+        <div class="flex items-center justify-between">
+          <p class="eyebrow text-navy">Tuesday</p>
+          <span class="grid h-11 w-11 place-items-center rounded-full bg-mint/40 text-forest">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M2 4h7a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H2zM22 4h-7a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h8z"/></svg>
           </span>
         </div>
-        <h3 class="mt-6 font-serif text-[1.625rem] leading-snug text-black">Digging Deep &amp; Bible Study</h3>
-        <div class="mt-4"><span class="rounded-full bg-blue-50 px-3.5 py-1.5 text-sm font-medium text-navy">6:00 PM</span></div>
-        <p class="mt-5 flex-1 leading-7 text-slate-600">We go verse by verse through scripture together, with time for questions and practical application.</p>
-        <p class="mt-6 flex items-center gap-2 border-t border-dotted border-black/20 pt-5 text-xs uppercase tracking-[.15em] text-slate-500">
+        <h3 class="mt-3 font-serif text-[1.35rem] leading-snug text-black">Digging Deep</h3>
+        <div class="mt-3"><span class="rounded-full bg-blue-50 px-3.5 py-1.5 text-sm font-medium text-navy">6:00 PM</span></div>
+        <p class="mt-3 leading-6 text-slate-600">We go verse by verse through scripture together, with time for questions and practical application.</p>
+        <p class="mt-4 flex items-center gap-2 border-t border-dotted border-black/20 pt-3 text-xs uppercase tracking-[.15em] text-slate-500">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01" stroke-linecap="round"/></svg>
           Main Auditorium
         </p>
       </article>
 
       <!-- Friday -->
-      <article class="flex flex-col rounded-3xl border border-black/5 bg-card p-8 shadow-sm">
-        <div class="flex items-start justify-between">
-          <p class="eyebrow text-navy">Friday</p>
-          <span class="grid h-[3.25rem] w-[3.25rem] place-items-center rounded-full bg-mint/40 text-forest">
+      <article class="flex flex-col rounded-2xl border border-black/5 bg-card p-4 shadow-sm">
+        <div class="flex items-center justify-between">
+          <p class="eyebrow text-navy">Thursday</p>
+          <span class="grid h-11 w-11 place-items-center rounded-full bg-mint/40 text-forest">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 14h2a2 2 0 0 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"/><path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.8-2.8l-4.2 3.9"/><path d="m2 15 6 6"/><path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.7 2.7 0 0 0 16 4a2.7 2.7 0 0 0-5 1.8c0 1.1.8 2 1.5 2.7L16 12z"/></svg>
           </span>
         </div>
-        <h3 class="mt-6 font-serif text-[1.625rem] leading-snug text-black">Prayer &amp; Intercession</h3>
-        <div class="mt-4"><span class="rounded-full bg-blue-50 px-3.5 py-1.5 text-sm font-medium text-navy">6:00 PM</span></div>
-        <p class="mt-5 flex-1 leading-7 text-slate-600">Corporate prayer for our church, our city and the nations, led by the pastoral team and prayer band.</p>
-        <p class="mt-6 flex items-start gap-2 border-t border-dotted border-black/20 pt-5 text-xs uppercase tracking-[.15em] text-slate-500">
+        <h3 class="mt-3 font-serif text-[1.35rem] leading-snug text-black">Faith Clinic</h3>
+        <div class="mt-3"><span class="rounded-full bg-blue-50 px-3.5 py-1.5 text-sm font-medium text-navy">6:00 PM</span></div>
+        <p class="mt-3 leading-6 text-slate-600">Corporate prayer for our church, our city and the nations.</p>
+        <p class="mt-4 flex items-start gap-2 border-t border-dotted border-black/20 pt-3 text-xs uppercase tracking-[.15em] text-slate-500">
           <svg class="mt-0.5 h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01" stroke-linecap="round"/></svg>
           Followed by vigil once a month
         </p>
       </article>
 
       <!-- Saturday -->
-      <article class="flex flex-col rounded-3xl border border-black/5 bg-card p-8 shadow-sm">
-        <div class="flex items-start justify-between">
+      <article class="flex flex-col rounded-2xl border border-black/5 bg-card p-4 shadow-sm">
+        <div class="flex items-center justify-between">
           <p class="eyebrow text-navy">Saturday</p>
-          <span class="grid h-[3.25rem] w-[3.25rem] place-items-center rounded-full bg-mint/40 text-forest">
+          <span class="grid h-11 w-11 place-items-center rounded-full bg-mint/40 text-forest">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.5a3.5 3.5 0 0 1 0 7M18.5 14.5c2 .8 3.5 2.6 3.5 5.5"/></svg>
           </span>
         </div>
-        <h3 class="mt-6 font-serif text-[1.625rem] leading-snug text-black">Youth &amp; Teens Fellowship</h3>
-        <div class="mt-4"><span class="rounded-full bg-blue-50 px-3.5 py-1.5 text-sm font-medium text-navy">4:00 PM</span></div>
-        <p class="mt-5 flex-1 leading-7 text-slate-600">A warm, energetic space for teenagers and young adults to grow in faith, friendship and purpose.</p>
-        <p class="mt-6 flex items-center gap-2 border-t border-dotted border-black/20 pt-5 text-xs uppercase tracking-[.15em] text-slate-500">
+        <h3 class="mt-3 font-serif text-[1.35rem] leading-snug text-black">Youth &amp; Teens Fellowship</h3>
+        <div class="mt-3"><span class="rounded-full bg-blue-50 px-3.5 py-1.5 text-sm font-medium text-navy">4:00 PM</span></div>
+        <p class="mt-3 leading-6 text-slate-600">A warm, energetic space for teenagers and young adults to grow in faith, friendship and purpose.</p>
+        <p class="mt-4 flex items-center gap-2 border-t border-dotted border-black/20 pt-3 text-xs uppercase tracking-[.15em] text-slate-500">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01" stroke-linecap="round"/></svg>
           Ages 13 – 30
         </p>
@@ -934,11 +952,8 @@
     };
     const ministries = [
       { title: 'Young Adults',      badge: 'Ages 18 – 35',        icon: IC.people, bg: 'bg-emerald-900', img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80', text: 'Career, purpose, relationships and faith; young professionals figuring out life together over coffee and the Word.' },
-      { title: 'Teens Church',      badge: 'Ages 13 – 17',        icon: IC.bell,   bg: 'bg-amber-900',   img: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80', text: 'High energy, honest conversations and real discipleship for teenagers finding their footing in Christ.' },
-      { title: "Men's Fellowship",  badge: 'Every 2nd Saturday',  icon: IC.shield, bg: 'bg-orange-950',  img: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=80', text: 'Men sharpening men; fatherhood, integrity, provision and leading a home with grace and conviction.' },
-      { title: 'Women of Destiny',  badge: 'Every 3rd Saturday',  icon: IC.shield, bg: 'bg-emerald-950', img: 'women.jpeg',   text: 'A sisterhood of women praying, growing and carrying one another through every season of life.' },
-      { title: "Children's Church", badge: 'Ages 2 – 12',         icon: IC.bell,   bg: 'bg-amber-900',   img: 'children.jpeg', text: 'Safe, joyful, age-appropriate teaching while parents worship; songs, stories and lots of colour.' },
-      { title: 'Prayer Band',       badge: 'Fridays',             icon: IC.hands,  bg: 'bg-slate-900',   img: 'prayer.jpeg',   text: 'The intercessors of the house; standing in the gap for families, the city and the nation week after week.' },
+      { title: 'Good Women Fellowship',      badge: 'Ages 13 – 17',        icon: IC.bell,   bg: 'bg-amber-900',   img: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80', text: 'High energy, honest conversations and real discipleship for teenagers finding their footing in Christ.' },
+      { title: " Excellent Men's Fellowship",  badge: 'Every 2nd Saturday',  icon: IC.shield, bg: 'bg-orange-950',  img: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=80', text: 'Men sharpening men; fatherhood, integrity, provision and leading a home with grace and conviction.' },
     ];
     document.getElementById('ministryGrid').innerHTML = ministries.map(m => `
       <article class="group overflow-hidden rounded-3xl border border-black/5 bg-card shadow-sm">
